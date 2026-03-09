@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李吉超 - 防灾减灾与工程力学专家</title>
+    <meta name="description" content="李吉超专家个人IP与软件商业化门户，专注于防灾减灾、土木工程及地震工程领域的学术研究与技术服务">
+    <meta name="keywords" content="Abaqus风电混塔脚本,反应谱计算工具,地震工程数值仿真软件,防灾减灾,土木工程,地震工程">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>李吉超 <span>专家团队</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#academic">学术影响力</a></li>
+                        <li><a href="#engineering">工程技术服务</a></li>
+                        <li><a href="#software">软件商店</a></li>
+                        <li><a href="#contact">合作联系</a></li>
+                        <li class="language-switch">
+                            <button id="lang-zh" class="active">中</button>
+                            <button id="lang-en">En</button>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页 Hero 区域 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2 data-lang="zh">从工程科学前沿到工业数字化落地</h2>
+                    <h2 data-lang="en">From Engineering Science Frontiers to Industrial Digitalization</h2>
+                    <p data-lang="zh">李吉超 课题组 | 专注于防灾减灾、土木工程及地震工程领域的学术研究与技术创新</p>
+                    <p data-lang="en">Li Jichao Research Group | Focused on academic research and technological innovation in disaster prevention, civil engineering, and earthquake engineering</p>
+                    <div class="hero-buttons">
+                        <a href="#academic" class="btn primary" data-lang="zh">学术简介</a>
+                        <a href="#engineering" class="btn secondary" data-lang="zh">工程服务</a>
+                        <a href="#software" class="btn primary" data-lang="zh">软件下载</a>
+                        <a href="#contact" class="btn secondary" data-lang="zh">合作联系</a>
+                        <a href="#academic" class="btn primary" data-lang="en" style="display: none;">Academic Profile</a>
+                        <a href="#engineering" class="btn secondary" data-lang="en" style="display: none;">Engineering Services</a>
+                        <a href="#software" class="btn primary" data-lang="en" style="display: none;">Software Store</a>
+                        <a href="#contact" class="btn secondary" data-lang="en" style="display: none;">Contact</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=structural%20engineering%20laboratory%20with%20testing%20equipment%2C%20professional%20setting%2C%20technical%20background%2C%20high%20quality%2C%20blue%20tone&image_size=landscape_16_9" alt="工程实验室">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学术影响力板块 -->
+    <section id="academic" class="academic">
+        <div class="container">
+            <h2 data-lang="zh">学术影响力</h2>
+            <h2 data-lang="en">Academic Prestige</h2>
+            
+            <!-- 个人简介 -->
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20portrait%20of%20a%20Chinese%20male%20scholar%20in%20academic%20attire%2C%20confident%20pose%2C%20clean%20background%2C%20high%20quality&image_size=square" alt="李吉超">
+                </div>
+                <div class="profile-content">
+                    <h3 data-lang="zh">李吉超 研究员</h3>
+                    <h3 data-lang="en">Dr. Li Jichao</h3>
+                    <div class="profile-title" data-lang="zh">
+                        <p>清华大学博士 | 博导 | 中国地震局工程力学研究所研究员</p>
+                        <p>国家级奖项获得者 | 防灾减灾领域专家</p>
+                    </div>
+                    <div class="profile-title" data-lang="en" style="display: none;">
+                        <p>Ph.D. from Tsinghua University | Supervisor | Researcher at Institute of Engineering Mechanics, China Earthquake Administration</p>
+                        <p>National Award Winner | Expert in Disaster Prevention and Mitigation</p>
+                    </div>
+                    <div class="profile-bio" data-lang="zh">
+                        <p>李吉超研究员深耕于防灾减灾、土木工程及地震工程领域，拥有丰富的学术研究经验和工程实践能力。作为清华大学博士、博士生导师，他致力于推动结构工程领域的技术创新与发展，在先进混合试验技术、功能可恢复韧性结构、抗震韧性评估等方面取得了显著成果。</p>
+                        <p>其研究团队开发了多项具有自主知识产权的科研软件工具，涵盖动力实验数据处理、人工波反应谱分析、供水管网/变电站地震分析等多个领域，为我国的防震减灾事业做出了重要贡献。</p>
+                    </div>
+                    <div class="profile-bio" data-lang="en" style="display: none;">
+                        <p>Dr. Li Jichao has dedicated his career to disaster prevention and mitigation, civil engineering, and earthquake engineering. With a Ph.D. from Tsinghua University and extensive experience as a supervisor, he is committed to advancing technological innovation in structural engineering, particularly in areas such as advanced hybrid testing techniques, functional recoverable resilient structures, and seismic resilience assessment.</p>
+                        <p>His research team has developed numerous proprietary scientific software tools covering dynamic experimental data processing, artificial wave response spectrum analysis, and seismic analysis of water supply networks and substations, making significant contributions to China's disaster prevention and mitigation efforts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 研究领域 -->
+            <div class="research-areas">
+                <h3 data-lang="zh">研究领域</h3>
+                <h3 data-lang="en" style="display: none;">Research Areas</h3>
+                <div class="area-list">
+                    <div class="area-item">
+                        <h4 data-lang="zh">先进混合试验技术</h4>
+                        <h4 data-lang="en" style="display: none;">Advanced Hybrid Testing Technology</h4>
+                        <p data-lang="zh">开发并应用先进的混合试验方法，提高结构抗震性能评估的准确性和效率。</p>
+                        <p data-lang="en" style="display: none;">Developing and applying advanced hybrid testing methods to improve the accuracy and efficiency of structural seismic performance assessment.</p>
+                    </div>
+                    <div class="area-item">
+                        <h4 data-lang="zh">功能可恢复韧性结构</h4>
+                        <h4 data-lang="en" style="display: none;">Functional Recoverable Resilient Structures</h4>
+                        <p data-lang="zh">研究具有自恢复能力的新型结构体系，提高建筑物在地震后的功能恢复速度。</p>
+                        <p data-lang="en" style="display: none;">Researching new structural systems with self-recovery capabilities to improve the speed of functional recovery of buildings after earthquakes.</p>
+                    </div>
+                    <div class="area-item">
+                        <h4 data-lang="zh">抗震韧性评估</h4>
+                        <h4 data-lang="en" style="display: none;">Seismic Resilience Assessment</h4>
+                        <p data-lang="zh">建立科学的抗震韧性评估体系，为城市和基础设施的抗震设计提供理论支持。</p>
+                        <p data-lang="en" style="display: none;">Establishing a scientific seismic resilience assessment system to provide theoretical support for seismic design of cities and infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学术成果 -->
+            <div class="academic-achievements">
+                <h3 data-lang="zh">学术成果</h3>
+                <h3 data-lang="en" style="display: none;">Academic Achievements</h3>
+                <div class="achievement-categories">
+                    <div class="category">
+                        <h4 data-lang="zh">获奖荣誉</h4>
+                        <h4 data-lang="en" style="display: none;">Awards</h4>
+                        <ul>
+                            <li data-lang="zh">国家科技进步奖</li>
+                            <li data-lang="zh">省部级科技进步一等奖</li>
+                            <li data-lang="zh">优秀青年科学家奖</li>
+                            <li data-lang="en" style="display: none;">National Science and Technology Progress Award</li>
+                            <li data-lang="en" style="display: none;">Provincial-level Science and Technology Progress First Prize</li>
+                            <li data-lang="en" style="display: none;">Outstanding Young Scientist Award</li>
+                        </ul>
+                    </div>
+                    <div class="category">
+                        <h4 data-lang="zh">专利技术</h4>
+                        <h4 data-lang="en" style="display: none;">Patents</h4>
+                        <ul>
+                            <li data-lang="zh">一种新型抗震结构节点</li>
+                            <li data-lang="zh">动力实验数据处理方法</li>
+                            <li data-lang="zh">供水管网地震脆弱性分析系统</li>
+                            <li data-lang="en" style="display: none;">A new type of seismic structural joint</li>
+                            <li data-lang="en" style="display: none;">Dynamic experimental data processing method</li>
+                            <li data-lang="en" style="display: none;">Water supply network seismic vulnerability analysis system</li>
+                        </ul>
+                    </div>
+                    <div class="category">
+                        <h4 data-lang="zh">核心论文</h4>
+                        <h4 data-lang="en" style="display: none;">Core Papers</h4>
+                        <ul>
+                            <li data-lang="zh">《先进混合试验技术及其应用》</li>
+                            <li data-lang="zh">《功能可恢复韧性结构设计方法》</li>
+                            <li data-lang="zh">《城市基础设施抗震韧性评估》</li>
+                            <li data-lang="en" style="display: none;">"Advanced Hybrid Testing Technology and Its Applications"</li>
+                            <li data-lang="en" style="display: none;">"Design Method for Functional Recoverable Resilient Structures"</li>
+                            <li data-lang="en" style="display: none;">"Seismic Resilience Assessment of Urban Infrastructure"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工程技术服务板块 -->
+    <section id="engineering" class="engineering">
+        <div class="container">
+            <h2 data-lang="zh">工程技术服务</h2>
+            <h2 data-lang="en">Engineering Solutions</h2>
+            
+            <!-- 服务能力 -->
+            <div class="service-capabilities">
+                <h3 data-lang="zh">服务能力</h3>
+                <h3 data-lang="en" style="display: none;">Service Capabilities</h3>
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=electrical%20substation%20icon%2C%20simple%20design%2C%20blue%20color%2C%20vector%20style&image_size=square" alt="变电站分析">
+                        </div>
+                        <h4 data-lang="zh">变电站震害分析</h4>
+                        <h4 data-lang="en" style="display: none;">Substation Seismic Analysis</h4>
+                        <p data-lang="zh">提供变电站结构的地震响应分析、脆弱性评估及抗震加固方案。</p>
+                        <p data-lang="en" style="display: none;">Providing seismic response analysis, vulnerability assessment, and seismic strengthening solutions for substation structures.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=water%20pipe%20network%20icon%2C%20simple%20design%2C%20blue%20color%2C%20vector%20style&image_size=square" alt="供水管网分析">
+                        </div>
+                        <h4 data-lang="zh">供水管网地震脆弱性分析</h4>
+                        <h4 data-lang="en" style="display: none;">Water Supply Network Seismic Vulnerability Analysis</h4>
+                        <p data-lang="zh">评估供水管网在地震作用下的脆弱性，提供韧性提升方案。</p>
+                        <p data-lang="en" style="display: none;">Assessing the vulnerability of water supply networks under seismic action and providing resilience improvement solutions.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=building%20structure%20icon%2C%20simple%20design%2C%20blue%20color%2C%20vector%20style&image_size=square" alt="结构抗震咨询">
+                        </div>
+                        <h4 data-lang="zh">结构抗震咨询</h4>
+                        <h4 data-lang="en" style="display: none;">Structural Seismic Consultation</h4>
+                        <p data-lang="zh">为各类建筑结构提供专业的抗震设计咨询和评估服务。</p>
+                        <p data-lang="en" style="display: none;">Providing professional seismic design consultation and assessment services for various building structures.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=laboratory%20testing%20icon%2C%20simple%20design%2C%20blue%20color%2C%20vector%20style&image_size=square" alt="试验方案设计">
+                        </div>
+                        <h4 data-lang="zh">复杂试验方案设计</h4>
+                        <h4 data-lang="en" style="display: none;">Complex Test Scheme Design</h4>
+                        <p data-lang="zh">设计并实施各类结构动力试验方案，提供专业的试验数据分析。</p>
+                        <p data-lang="en" style="display: none;">Designing and implementing various structural dynamic test schemes and providing professional test data analysis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 案例墙 -->
+            <div class="case-studies">
+                <h3 data-lang="zh">成功案例</h3>
+                <h3 data-lang="en" style="display: none;">Case Studies</h3>
+                <div class="case-list">
+                    <div class="case-item">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=distributed%20pseudo-dynamic%20testing%20system%2C%20laboratory%20setting%2C%20technical%20equipment%2C%20professional%20environment&image_size=landscape_4_3" alt="分布式伪动力试验系统">
+                        <h4 data-lang="zh">分布式伪动力试验系统开发</h4>
+                        <h4 data-lang="en" style="display: none;">Distributed Pseudo-dynamic Testing System Development</h4>
+                        <p data-lang="zh">为大型结构提供高精度的动力响应测试方案，已应用于多个国家级科研项目。</p>
+                        <p data-lang="en" style="display: none;">Providing high-precision dynamic response testing solutions for large structures, which have been applied to multiple national-level research projects.</p>
+                    </div>
+                    <div class="case-item">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=substation%20seismic%20analysis%2C%20technical%20diagram%2C%20engineering%20analysis%2C%20professional%20visualization&image_size=landscape_4_3" alt="变电站抗震分析">
+                        <h4 data-lang="zh">某大型变电站抗震安全评估</h4>
+                        <h4 data-lang="en" style="display: none;">Seismic Safety Assessment of a Large Substation</h4>
+                        <p data-lang="zh">对某大型变电站进行全面的抗震安全评估，提出针对性的加固方案。</p>
+                        <p data-lang="en" style="display: none;">Conducted a comprehensive seismic safety assessment for a large substation and proposed targeted reinforcement solutions.</p>
+                    </div>
+                    <div class="case-item">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=water%20supply%20network%20analysis%2C%20technical%20diagram%2C%20engineering%20analysis%2C%20professional%20visualization&image_size=landscape_4_3" alt="供水管网分析">
+                        <h4 data-lang="zh">城市供水管网地震脆弱性评估</h4>
+                        <h4 data-lang="en" style="display: none;">Seismic Vulnerability Assessment of Urban Water Supply Network</h4>
+                        <p data-lang="zh">评估城市供水管网在地震作用下的脆弱性，为城市基础设施韧性提升提供依据。</p>
+                        <p data-lang="en" style="display: none;">Assessed the vulnerability of urban water supply networks under seismic action, providing a basis for improving urban infrastructure resilience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 合作按钮 -->
+            <div class="cooperation-section">
+                <a href="#contact" class="btn primary" data-lang="zh">预约专家咨询</a>
+                <a href="#contact" class="btn secondary" data-lang="zh">获取技术方案</a>
+                <a href="#contact" class="btn primary" data-lang="en" style="display: none;">Book Expert Consultation</a>
+                <a href="#contact" class="btn secondary" data-lang="en" style="display: none;">Get Technical Proposal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 软件商店板块 -->
+    <section id="software" class="software-store">
+        <div class="container">
+            <h2 data-lang="zh">软件商店</h2>
+            <h2 data-lang="en">Software Store</h2>
+            <p class="section-description" data-lang="zh">我们开发的专业工具箱，为工程实践和科学研究提供高效解决方案</p>
+            <p class="section-description" data-lang="en" style="display: none;">Our professional toolbox provides efficient solutions for engineering practice and scientific research</p>
+            
+            <!-- 软件产品列表 -->
+            <div class="software-list">
+                <!-- 旗舰产品 -->
+                <div class="software-item featured">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wind%20turbine%20hybrid%20tower%20icon%2C%203D%20model%2C%20professional%20design%2C%20blue%20color&image_size=square" alt="风电混塔建模系统">
+                        </div>
+                        <div class="software-info">
+                            <h3 data-lang="zh">装配式风电混塔参数化建模系统</h3>
+                            <h3 data-lang="en" style="display: none;">Prefabricated Wind Turbine Hybrid Tower Parametric Modeling System</h3>
+                            <div class="software-tags">
+                                <span class="tag featured-tag" data-lang="zh">旗舰产品</span>
+                                <span class="tag" data-lang="zh">Abaqus脚本</span>
+                                <span class="tag" data-lang="en" style="display: none;">Flagship Product</span>
+                                <span class="tag" data-lang="en" style="display: none;">Abaqus Script</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="software-content">
+                        <div class="software-demo">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wind%20turbine%20hybrid%20tower%203D%20modeling%20software%20interface%2C%20professional%20UI%2C%20technical%20visualization&image_size=landscape_16_9" alt="软件演示">
+                        </div>
+                        <div class="software-description">
+                            <h4 data-lang="zh">核心功能</h4>
+                            <h4 data-lang="en" style="display: none;">Core Features</h4>
+                            <ul>
+                                <li data-lang="zh">参数化建模：通过简单的参数输入快速生成风电混塔模型</li>
+                                <li data-lang="zh">Abaqus集成：直接生成Abaqus可识别的模型文件</li>
+                                <li data-lang="zh">自动网格划分：智能生成高质量网格</li>
+                                <li data-lang="zh">多场景分析：支持不同工况下的结构响应分析</li>
+                                <li data-lang="en" style="display: none;">Parametric modeling: Quickly generate wind turbine hybrid tower models through simple parameter input</li>
+                                <li data-lang="en" style="display: none;">Abaqus integration: Directly generate Abaqus-recognizable model files</li>
+                                <li data-lang="en" style="display: none;">Automatic meshing: Intelligently generate high-quality meshes</li>
+                                <li data-lang="en" style="display: none;">Multi-scenario analysis: Support structural response analysis under different working conditions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="software-footer">
+                        <div class="software-price">
+                            <span class="price-label" data-lang="zh">价格：</span>
+                            <span class="price-label" data-lang="en" style="display: none;">Price:</span>
+                            <span class="price" data-lang="zh">￥9999/永久授权</span>
+                            <span class="price" data-lang="en" style="display: none;">¥9999/Permanent License</span>
+                        </div>
+                        <div class="software-actions">
+                            <a href="#" class="btn secondary" data-lang="zh">下载试用版</a>
+                            <a href="#" class="btn primary" data-lang="zh">立即购买</a>
+                            <a href="#" class="btn secondary" data-lang="en" style="display: none;">Download Trial</a>
+                            <a href="#" class="btn primary" data-lang="en" style="display: none;">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 专家自研系列 -->
+                <div class="software-item">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20processing%20icon%2C%20technical%20design%2C%20blue%20color&image_size=square" alt="动力实验数据处理工具">
+                        </div>
+                        <div class="software-info">
+                            <h3 data-lang="zh">动力实验数据处理工具</h3>
+                            <h3 data-lang="en" style="display: none;">Dynamic Experimental Data Processing Tool</h3>
+                            <div class="software-tags">
+                                <span class="tag" data-lang="zh">专家自研</span>
+                                <span class="tag" data-lang="zh">数据处理</span>
+                                <span class="tag" data-lang="en" style="display: none;">Expert Developed</span>
+                                <span class="tag" data-lang="en" style="display: none;">Data Processing</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="software-content">
+                        <div class="software-demo">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=data%20processing%20software%20interface%2C%20charts%20and%20graphs%2C%20professional%20UI&image_size=landscape_16_9" alt="软件演示">
+                        </div>
+                        <div class="software-description">
+                            <h4 data-lang="zh">核心功能</h4>
+                            <h4 data-lang="en" style="display: none;">Core Features</h4>
+                            <ul>
+                                <li data-lang="zh">自动数据清洗与过滤</li>
+                                <li data-lang="zh">多通道数据同步分析</li>
+                                <li data-lang="zh">频域及时域分析</li>
+                                <li data-lang="zh">报告自动生成</li>
+                                <li data-lang="en" style="display: none;">Automatic data cleaning and filtering</li>
+                                <li data-lang="en" style="display: none;">Multi-channel data synchronization analysis</li>
+                                <li data-lang="en" style="display: none;">Frequency and time domain analysis</li>
+                                <li data-lang="en" style="display: none;">Automatic report generation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="software-footer">
+                        <div class="software-price">
+                            <span class="price-label" data-lang="zh">价格：</span>
+                            <span class="price-label" data-lang="en" style="display: none;">Price:</span>
+                            <span class="price" data-lang="zh">￥4999/永久授权</span>
+                            <span class="price" data-lang="en" style="display: none;">¥4999/Permanent License</span>
+                        </div>
+                        <div class="software-actions">
+                            <a href="#" class="btn secondary" data-lang="zh">下载试用版</a>
+                            <a href="#" class="btn primary" data-lang="zh">立即购买</a>
+                            <a href="#" class="btn secondary" data-lang="en" style="display: none;">Download Trial</a>
+                            <a href="#" class="btn primary" data-lang="en" style="display: none;">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="software-item">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=spectrum%20analysis%20icon%2C%20technical%20design%2C%20blue%20color&image_size=square" alt="人工波/反应谱生成器">
+                        </div>
+                        <div class="software-info">
+                            <h3 data-lang="zh">人工波/反应谱生成器</h3>
+                            <h3 data-lang="en" style="display: none;">Artificial Wave/Response Spectrum Generator</h3>
+                            <div class="software-tags">
+                                <span class="tag" data-lang="zh">专家自研</span>
+                                <span class="tag" data-lang="zh">反应谱计算</span>
+                                <span class="tag" data-lang="en" style="display: none;">Expert Developed</span>
+                                <span class="tag" data-lang="en" style="display: none;">Response Spectrum Calculation</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="software-content">
+                        <div class="software-demo">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=spectrum%20analysis%20software%20interface%2C%20waveforms%20and%20spectra%2C%20professional%20UI&image_size=landscape_16_9" alt="软件演示">
+                        </div>
+                        <div class="software-description">
+                            <h4 data-lang="zh">核心功能</h4>
+                            <h4 data-lang="en" style="display: none;">Core Features</h4>
+                            <ul>
+                                <li data-lang="zh">符合规范的人工波生成</li>
+                                <li data-lang="zh">反应谱计算与匹配</li>
+                                <li data-lang="zh">多标准支持（国标、美标等）</li>
+                                <li data-lang="zh">批量处理功能</li>
+                                <li data-lang="en" style="display: none;">Code-compliant artificial wave generation</li>
+                                <li data-lang="en" style="display: none;">Response spectrum calculation and matching</li>
+                                <li data-lang="en" style="display: none;">Multi-standard support (GB, ACI, etc.)</li>
+                                <li data-lang="en" style="display: none;">Batch processing capability</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="software-footer">
+                        <div class="software-price">
+                            <span class="price-label" data-lang="zh">价格：</span>
+                            <span class="price-label" data-lang="en" style="display: none;">Price:</span>
+                            <span class="price" data-lang="zh">￥3999/永久授权</span>
+                            <span class="price" data-lang="en" style="display: none;">¥3999/Permanent License</span>
+                        </div>
+                        <div class="software-actions">
+                            <a href="#" class="btn secondary" data-lang="zh">下载试用版</a>
+                            <a href="#" class="btn primary" data-lang="zh">立即购买</a>
+                            <a href="#" class="btn secondary" data-lang="en" style="display: none;">Download Trial</a>
+                            <a href="#" class="btn primary" data-lang="en" style="display: none;">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="software-item">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=water%20network%20analysis%20icon%2C%20technical%20design%2C%20blue%20color&image_size=square" alt="供水管网地震脆弱性分析软件">
+                        </div>
+                        <div class="software-info">
+                            <h3 data-lang="zh">供水管网地震脆弱性分析软件</h3>
+                            <h3 data-lang="en" style="display: none;">Water Supply Network Seismic Vulnerability Analysis Software</h3>
+                            <div class="software-tags">
+                                <span class="tag" data-lang="zh">专家自研</span>
+                                <span class="tag" data-lang="zh">脆弱性分析</span>
+                                <span class="tag" data-lang="en" style="display: none;">Expert Developed</span>
+                                <span class="tag" data-lang="en" style="display: none;">Vulnerability Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="software-content">
+                        <div class="software-demo">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=water%20network%20analysis%20software%20interface%2C%20network%20diagrams%2C%20professional%20UI&image_size=landscape_16_9" alt="软件演示">
+                        </div>
+                        <div class="software-description">
+                            <h4 data-lang="zh">核心功能</h4>
+                            <h4 data-lang="en" style="display: none;">Core Features</h4>
+                            <ul>
+                                <li data-lang="zh">管网拓扑自动识别</li>
+                                <li data-lang="zh">地震作用下的水力分析</li>
+                                <li data-lang="zh">脆弱性评估与可视化</li>
+                                <li data-lang="zh">韧性提升方案生成</li>
+                                <li data-lang="en" style="display: none;">Automatic network topology identification</li>
+                                <li data-lang="en" style="display: none;">Hydraulic analysis under seismic action</li>
+                                <li data-lang="en" style="display: none;">Vulnerability assessment and visualization</li>
+                                <li data-lang="en" style="display: none;">Resilience improvement solution generation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="software-footer">
+                        <div class="software-price">
+                            <span class="price-label" data-lang="zh">价格：</span>
+                            <span class="price-label" data-lang="en" style="display: none;">Price:</span>
+                            <span class="price" data-lang="zh">￥5999/永久授权</span>
+                            <span class="price" data-lang="en" style="display: none;">¥5999/Permanent License</span>
+                        </div>
+                        <div class="software-actions">
+                            <a href="#" class="btn secondary" data-lang="zh">下载试用版</a>
+                            <a href="#" class="btn primary" data-lang="zh">立即购买</a>
+                            <a href="#" class="btn secondary" data-lang="en" style="display: none;">Download Trial</a>
+                            <a href="#" class="btn primary" data-lang="en" style="display: none;">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="software-item">
+                    <div class="software-header">
+                        <div class="software-icon">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=substation%20analysis%20icon%2C%20technical%20design%2C%20blue%20color&image_size=square" alt="变电站结构地震响应分析平台">
+                        </div>
+                        <div class="software-info">
+                            <h3 data-lang="zh">变电站结构地震响应分析平台</h3>
+                            <h3 data-lang="en" style="display: none;">Substation Structure Seismic Response Analysis Platform</h3>
+                            <div class="software-tags">
+                                <span class="tag" data-lang="zh">专家自研</span>
+                                <span class="tag" data-lang="zh">地震响应分析</span>
+                                <span class="tag" data-lang="en" style="display: none;">Expert Developed</span>
+                                <span class="tag" data-lang="en" style="display: none;">Seismic Response Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="software-content">
+                        <div class="software-demo">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=substation%20analysis%20software%20interface%2C%203D%20models%2C%20professional%20UI&image_size=landscape_16_9" alt="软件演示">
+                        </div>
+                        <div class="software-description">
+                            <h4 data-lang="zh">核心功能</h4>
+                            <h4 data-lang="en" style="display: none;">Core Features</h4>
+                            <ul>
+                                <li data-lang="zh">变电站结构建模与分析</li>
+                                <li data-lang="zh">设备与结构耦合分析</li>
+                                <li data-lang="zh">地震响应评估</li>
+                                <li data-lang="zh">加固方案优化</li>
+                                <li data-lang="en" style="display: none;">Substation structure modeling and analysis</li>
+                                <li data-lang="en" style="display: none;">Equipment and structure coupling analysis</li>
+                                <li data-lang="en" style="display: none;">Seismic response assessment</li>
+                                <li data-lang="en" style="display: none;">Reinforcement scheme optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="software-footer">
+                        <div class="software-price">
+                            <span class="price-label" data-lang="zh">价格：</span>
+                            <span class="price-label" data-lang="en" style="display: none;">Price:</span>
+                            <span class="price" data-lang="zh">￥6999/永久授权</span>
+                            <span class="price" data-lang="en" style="display: none;">¥6999/Permanent License</span>
+                        </div>
+                        <div class="software-actions">
+                            <a href="#" class="btn secondary" data-lang="zh">下载试用版</a>
+                            <a href="#" class="btn primary" data-lang="zh">立即购买</a>
+                            <a href="#" class="btn secondary" data-lang="en" style="display: none;">Download Trial</a>
+                            <a href="#" class="btn primary" data-lang="en" style="display: none;">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作联系板块 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 data-lang="zh">合作联系</h2>
+            <h2 data-lang="en">Contact</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 data-lang="zh">联系方式</h3>
+                    <h3 data-lang="en" style="display: none;">Contact Information</h3>
+                    <ul>
+                        <li data-lang="zh">邮箱：13661168172@163.com</li>
+                        <li data-lang="zh">GitHub：<a href="https://github.com/luobo0531" target="_blank">github.com/luobo0531</a></li>
+                        <li data-lang="zh">单位：中国地震局工程力学研究所</li>
+                        <li data-lang="en" style="display: none;">Email: 13661168172@163.com</li>
+                        <li data-lang="en" style="display: none;">GitHub: <a href="https://github.com/luobo0531" target="_blank">github.com/luobo0531</a></li>
+                        <li data-lang="en" style="display: none;">Institution: Institute of Engineering Mechanics, China Earthquake Administration</li>
+                    </ul>
+                    <div class="cooperation-types">
+                        <h4 data-lang="zh">合作类型</h4>
+                        <h4 data-lang="en" style="display: none;">Cooperation Types</h4>
+                        <ul>
+                            <li data-lang="zh">学术合作：国家级、省部级科研项目</li>
+                            <li data-lang="zh">技术服务：工程咨询、试验方案设计</li>
+                            <li data-lang="zh">软件授权：专业工具软件购买与定制</li>
+                            <li data-lang="en" style="display: none;">Academic cooperation: National and provincial-level research projects</li>
+                            <li data-lang="en" style="display: none;">Technical services: Engineering consultation, test scheme design</li>
+                            <li data-lang="en" style="display: none;">Software licensing: Professional tool software purchase and customization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 data-lang="zh">发送消息</h3>
+                    <h3 data-lang="en" style="display: none;">Send Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" data-lang="zh">姓名：</label>
+                            <label for="name" data-lang="en" style="display: none;">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-lang="zh">邮箱：</label>
+                            <label for="email" data-lang="en" style="display: none;">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="organization" data-lang="zh">单位：</label>
+                            <label for="organization" data-lang="en" style="display: none;">Organization:</label>
+                            <input type="text" id="organization" name="organization">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" data-lang="zh">主题：</label>
+                            <label for="subject" data-lang="en" style="display: none;">Subject:</label>
+                            <select id="subject" name="subject">
+                                <option value="academic" data-lang="zh">学术合作</option>
+                                <option value="technical" data-lang="zh">技术服务</option>
+                                <option value="software" data-lang="zh">软件授权</option>
+                                <option value="other" data-lang="zh">其他</option>
+                                <option value="academic" data-lang="en" style="display: none;">Academic Cooperation</option>
+                                <option value="technical" data-lang="en" style="display: none;">Technical Services</option>
+                                <option value="software" data-lang="en" style="display: none;">Software Licensing</option>
+                                <option value="other" data-lang="en" style="display: none;">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-lang="zh">消息：</label>
+                            <label for="message" data-lang="en" style="display: none;">Message:</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary" data-lang="zh">发送</button>
+                        <button type="submit" class="btn primary" data-lang="en" style="display: none;">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 data-lang="zh">李吉超 专家团队</h3>
+                    <h3 data-lang="en" style="display: none;">Dr. Li Jichao Research Team</h3>
+                    <p data-lang="zh">从工程科学前沿到工业数字化落地</p>
+                    <p data-lang="en" style="display: none;">From Engineering Science Frontiers to Industrial Digitalization</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#home" data-lang="zh">首页</a></li>
+                        <li><a href="#academic" data-lang="zh">学术影响力</a></li>
+                        <li><a href="#engineering" data-lang="zh">工程技术服务</a></li>
+                        <li><a href="#software" data-lang="zh">软件商店</a></li>
+                        <li><a href="#contact" data-lang="zh">合作联系</a></li>
+                        <li><a href="#home" data-lang="en" style="display: none;">Home</a></li>
+                        <li><a href="#academic" data-lang="en" style="display: none;">Academic Prestige</a></li>
+                        <li><a href="#engineering" data-lang="en" style="display: none;">Engineering Solutions</a></li>
+                        <li><a href="#software" data-lang="en" style="display: none;">Software Store</a></li>
+                        <li><a href="#contact" data-lang="en" style="display: none;">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-lang="zh">&copy; 2024 李吉超专家团队. 保留所有权利.</p>
+                <p data-lang="en" style="display: none;">&copy; 2024 Dr. Li Jichao Research Team. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
