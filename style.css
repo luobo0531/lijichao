@@ -361,6 +361,56 @@ section h2::after {
     line-height: 1.6;
 }
 
+.education-experience {
+    margin-bottom: 3rem;
+}
+
+.education-experience h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.experience-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.education, .work-experience {
+    background-color: var(--light-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.education:hover, .work-experience:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.education h4, .work-experience h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.education ul, .work-experience ul {
+    list-style: none;
+}
+
+.education li, .work-experience li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--light-gray);
+    color: var(--dark-color);
+}
+
+.education li:last-child, .work-experience li:last-child {
+    border-bottom: none;
+}
+
 .academic-achievements h3 {
     font-size: 1.5rem;
     font-weight: 600;
