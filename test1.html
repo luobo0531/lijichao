@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+body{
+margin:0;
+background:#f8fafc;
+font-family:"Microsoft YaHei",sans-serif;
+}
+
+/* banner */
+
+.banner{
+height:460px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden;
+}
+
+/* 标题 */
+
+h1{
+font-size:52px;
+margin:0;
+color:#111827;
+letter-spacing:1px;
+}
+
+/* 副标题 */
+
+.subtitle{
+margin-top:28px;
+font-size:16px;
+color:#4b5563;
+max-width:640px;
+text-align:center;
+line-height:1.7;
+}
+
+/* 动力学曲线 */
+
+svg{
+width:720px;
+margin-top:20px;
+}
+
+/* 衰减振动 */
+
+.decay{
+fill:none;
+stroke:#2563eb;
+stroke-width:2.4;
+stroke-linecap:round;
+opacity:0.9;
+}
+
+/* 随机扰动 */
+
+.noise{
+fill:none;
+stroke:#94a3b8;
+stroke-width:1.2;
+opacity:0.6;
+}
+
+/* phase space */
+
+.phase{
+fill:none;
+stroke:#6366f1;
+stroke-width:1.4;
+opacity:0.5;
+}
+
+/* 时间步节点 */
+
+.node{
+fill:#2563eb;
+opacity:0.8;
+}
+
+/* 背景公式 */
+
+.formula{
+position:absolute;
+font-size:40px;
+font-family:serif;
+color:rgba(0,0,0,0.04);
+white-space:nowrap;
+}
+
+.f1{top:70px;left:10%;}
+.f2{top:110px;right:12%;}
+.f3{bottom:100px;left:18%;}
+.f4{bottom:70px;right:16%;}
+
+/* 时间步 */
+
+.time{
+position:absolute;
+bottom:30px;
+right:50px;
+font-size:13px;
+color:#9ca3af;
+letter-spacing:2px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="banner">
+
+<div class="formula f1">Mü + Cū + Ku = F(t)</div>
+<div class="formula f2">β = 1/4 &nbsp;&nbsp; γ = 1/2</div>
+<div class="formula f3">phase space</div>
+<div class="formula f4">∂²u/∂t²</div>
+
+<h1>科研 Newmark</h1>
+
+<svg viewBox="0 0 800 200">
+
+<!-- 衰减振动 -->
+
+<path class="decay"
+d="
+M0 100
+C80 40 120 160 200 100
+S320 50 400 100
+S520 70 600 100
+S720 90 800 100
+"
+/>
+
+<!-- 随机振动 -->
+
+<path class="noise"
+d="
+M0 110
+L60 90
+L120 120
+L180 80
+L240 115
+L300 95
+L360 110
+L420 90
+L480 120
+L540 100
+L600 110
+L660 90
+L720 115
+L780 100
+"
+/>
+
+<!-- phase space 螺旋 -->
+
+<path class="phase"
+d="
+M400 100
+c40 -30 80 30 40 60
+c-50 30 -100 -30 -60 -80
+c60 -60 150 20 80 120
+"
+/>
+
+<!-- Newmark 时间步节点 -->
+
+<circle class="node" cx="0" cy="100" r="3"/>
+<circle class="node" cx="200" cy="100" r="3"/>
+<circle class="node" cx="400" cy="100" r="3"/>
+<circle class="node" cx="600" cy="100" r="3"/>
+<circle class="node" cx="800" cy="100" r="3"/>
+
+</svg>
+
+<div class="subtitle">
+作为一名从事工程抗震研究的科研牛马（Newmark），
+谨以谐音梗致敬 Newmark-β 法。
+</div>
+
+<div class="time">
+t₀ → t₁ → t₂ → t₃
+</div>
+
+</div>
+
+</body>
+</html>

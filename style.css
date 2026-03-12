@@ -35,7 +35,7 @@ body {
 
 /* 导航栏样式 */
 header {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     box-shadow: var(--box-shadow);
     position: sticky;
@@ -136,24 +136,34 @@ nav a:hover::after {
 
 /* Hero 区域样式 */
 .hero {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    padding: 6rem 0;
     position: relative;
     overflow: hidden;
     margin-top: 0; /* 重置上边距，因为 hero 区域是页面顶部 */
+    padding: 6rem 0;
     padding-top: 8rem; /* 增加顶部内边距，避免与导航栏重叠 */
+    min-height: 600px; /* 设置固定高度，确保下面section从hero底部开始布局 */
 }
 
-.hero::before {
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/background.png') no-repeat center center;
+    background-size: cover;
+    z-index: 0;
+}
+
+.hero-bg::before {
     content: '';
     position: absolute;
     top: 0;
-    right: 0;
-    width: 50%;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=abstract%20structural%20engineering%20patterns%2C%20geometric%20shapes%2C%20light%20blue%20background%2C%20subtle%20pattern&image_size=landscape_16_9') no-repeat center;
-    background-size: cover;
-    opacity: 0.1;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
 }
 
 .hero-content {
@@ -161,7 +171,7 @@ nav a:hover::after {
     align-items: center;
     gap: 3rem;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero-text {
@@ -238,7 +248,8 @@ nav a:hover::after {
 /* 通用 section 样式 */
 section {
     padding: 4rem 0;
-    margin-top: 80px; /* 避免与导航栏重叠 */
+    margin-top: 0; /* 重置顶部边距 */
+    scroll-margin-top: 100px; /* 为锚点滚动添加顶部空间 */
 }
 
 section h2 {
@@ -267,13 +278,15 @@ section h2::after {
     font-size: 1.1rem;
     color: var(--gray-color);
     margin-bottom: 3rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    white-space: nowrap;
+    overflow: visible;
 }
 
 /* 学术影响力板块 */
 .academic {
+    background-image: url('images/Newmark.png');
+    background-repeat: repeat;
+    background-size: 700px;
     background-color: white;
 }
 
@@ -586,7 +599,8 @@ section h2::after {
 
 .software-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 2rem;
 }
 
@@ -596,6 +610,8 @@ section h2::after {
     overflow: hidden;
     transition: var(--transition);
     box-shadow: var(--box-shadow);
+    flex: 1 1 calc(50% - 1rem);
+    min-width: 300px;
 }
 
 .software-item:hover {
@@ -661,14 +677,13 @@ section h2::after {
 
 .software-content {
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
     padding: 1.5rem;
-    flex-wrap: wrap;
 }
 
 .software-demo {
-    flex: 1;
-    min-width: 300px;
+    width: 100%;
 }
 
 .software-demo img {
@@ -678,8 +693,7 @@ section h2::after {
 }
 
 .software-description {
-    flex: 1;
-    min-width: 300px;
+    width: 100%;
 }
 
 .software-description h4 {
@@ -733,6 +747,27 @@ section h2::after {
 .software-actions {
     display: flex;
     gap: 1rem;
+}
+
+/* 萝卜Claw的数字玩具板块 */
+.toys-section {
+    background-image: url('images/萝卜claw.png');
+    background-repeat: repeat;
+    background-size: 700px;
+    background-color: white;
+    padding: 4rem 0;
+}
+
+.toys-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.toys-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--dark-color);
 }
 
 /* 合作联系板块 */

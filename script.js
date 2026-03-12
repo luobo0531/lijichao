@@ -151,9 +151,9 @@ function initNavbarScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         // 计算透明度，滚动距离越大，透明度越高
-        let opacity = Math.min(scrollTop / 200, 0.95);
+        let opacity = Math.min(scrollTop / 100, 1);
         if (scrollTop < 50) {
-            opacity = 0.95 - (50 - scrollTop) / 100;
+            opacity = 0.98 - (50 - scrollTop) / 250;
         }
         
         // 更新导航栏样式
@@ -300,12 +300,12 @@ function toggleMobileMenu() {
 
 // 添加滚动时的视差效果
 function initParallaxEffect() {
-    const heroSection = document.querySelector('.hero');
+    const heroBg = document.querySelector('.hero-bg');
     
     window.addEventListener('scroll', function() {
-        if (heroSection) {
+        if (heroBg) {
             const scrollY = window.pageYOffset;
-            heroSection.style.transform = `translateY(${scrollY * 0.5}px)`;
+            heroBg.style.transform = `translateY(${scrollY * 0.5}px)`;
         }
     });
 }
