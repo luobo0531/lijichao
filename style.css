@@ -35,12 +35,13 @@ body {
 
 /* 导航栏样式 */
 header {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     box-shadow: var(--box-shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .header-content {

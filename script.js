@@ -150,6 +150,15 @@ function initNavbarScroll() {
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
+        // 计算透明度，滚动距离越大，透明度越高
+        let opacity = Math.min(scrollTop / 200, 0.95);
+        if (scrollTop < 50) {
+            opacity = 0.95 - (50 - scrollTop) / 100;
+        }
+        
+        // 更新导航栏样式
+        header.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+        
         if (scrollTop > 50) {
             header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
         } else {
