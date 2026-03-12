@@ -140,6 +140,8 @@ nav a:hover::after {
     padding: 6rem 0;
     position: relative;
     overflow: hidden;
+    margin-top: 0; /* 重置上边距，因为 hero 区域是页面顶部 */
+    padding-top: 8rem; /* 增加顶部内边距，避免与导航栏重叠 */
 }
 
 .hero::before {
@@ -236,6 +238,7 @@ nav a:hover::after {
 /* 通用 section 样式 */
 section {
     padding: 4rem 0;
+    margin-top: 80px; /* 避免与导航栏重叠 */
 }
 
 section h2 {
