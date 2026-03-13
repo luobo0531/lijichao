@@ -14,7 +14,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1>李吉超 <span>专家团队</span></h1>
+                    <h1>李吉超 <span></span></h1>
                 </div>
                 <nav>
                     <ul>
@@ -22,7 +22,7 @@
                         <li><a href="#engineering">工程Newmark</a></li>
                         <li><a href="#software">软件Newmark</a></li>
                         <li><a href="#toys">萝卜Claw的数字玩具</a></li>
-                        <li><a href="#contact">神神叨叨的大裁缝</a></li>
+                        <li><a href="#misc">神神叨叨的大裁缝</a></li>
                         <li class="language-switch">
                             <button id="lang-zh" class="active">中</button>
                             <button id="lang-en">En</button>
@@ -37,6 +37,53 @@
             </div>
         </div>
     </header>
+
+    <!-- 右侧固定目录导航 -->
+    <nav class="sidebar-nav">
+        <div class="sidebar-content">
+            <ul>
+                <!-- 科研Newmark -->
+                <li class="nav-item level-1" data-section="academic">
+                    <div class="nav-dot"></div>
+                    <a href="#academic">科研Newmark</a>
+                    <ul class="sub-nav">
+                        <li data-section="profile"><div class="nav-dot"></div><a href="#profile">学术简介</a></li>
+                        <li data-section="education"><div class="nav-dot"></div><a href="#education">教育与经历</a></li>
+                        <li data-section="projects"><div class="nav-dot"></div><a href="#projects">科研项目</a></li>
+                        <li data-section="papers"><div class="nav-dot"></div><a href="#papers">发表论文</a></li>
+                        <li data-section="books"><div class="nav-dot"></div><a href="#books">专著</a></li>
+                        <li data-section="patents"><div class="nav-dot"></div><a href="#patents">专利</a></li>
+                        <li data-section="copyrights"><div class="nav-dot"></div><a href="#copyrights">软件著作权</a></li>
+                        <li data-section="standards"><div class="nav-dot"></div><a href="#standards">参编标准</a></li>
+                    </ul>
+                </li>
+                <!-- 工程Newmark -->
+                <li class="nav-item level-1" data-section="engineering">
+                    <div class="nav-dot"></div>
+                    <a href="#engineering">工程Newmark</a>
+                    <ul class="sub-nav">
+                        <li data-section="services"><div class="nav-dot"></div><a href="#services">手里有活儿</a></li>
+                        <li data-section="cases"><div class="nav-dot"></div><a href="#cases">交过的作业</a></li>
+                    </ul>
+                </li>
+                <!-- 软件Newmark -->
+                <li class="nav-item level-1" data-section="software">
+                    <div class="nav-dot"></div>
+                    <a href="#software">软件Newmark</a>
+                </li>
+                <!-- 萝卜Claw的数字玩具 -->
+                <li class="nav-item level-1" data-section="toys">
+                    <div class="nav-dot"></div>
+                    <a href="#toys">萝卜Claw</a>
+                </li>
+                <!-- 神神叨叨的大裁缝 -->
+                <li class="nav-item level-1" data-section="misc">
+                    <div class="nav-dot"></div>
+                    <a href="#misc">神神叨叨</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- 首页 Hero 区域 -->
     <section id="home" class="hero">
@@ -65,7 +112,7 @@
             <p class="section-description" data-lang="zh">作为一名从事工程抗震研究的科研牛马（Newmark），谨以此谐音梗致敬 Newmark-β 法。</p>
             
             <!-- 个人简介 -->
-            <div class="profile-section">
+            <div id="profile" class="profile-section">
                 <div class="profile-image">
                     <img src="images/pig.png" alt="李吉超">
                 </div>
@@ -92,7 +139,7 @@
             </div>
 
             <!-- 教育背景与工作经历 -->
-            <div class="education-experience">
+            <div id="education" class="education-experience">
                 <h3 data-lang="zh">教育背景与工作经历</h3>
                 <h3 data-lang="en" style="display: none;">Education and Work Experience</h3>
                 <div class="experience-content">
@@ -122,7 +169,7 @@
             </div>
 
             <!-- 科研项目 -->
-            <div class="research-projects">
+            <div id="projects" class="research-projects">
                 <h3 data-lang="zh">科研项目</h3>
                 <h3 data-lang="en" style="display: none;">Research Projects</h3>
                 <div class="project-list">
@@ -190,7 +237,7 @@
             </div>
 
             <!-- 发表论文 -->
-            <div class="publications">
+            <div id="papers" class="publications">
                 <h3 data-lang="zh">发表论文</h3>
                 <h3 data-lang="en" style="display: none;">Publications</h3>
                 <div class="publication-list">
@@ -474,7 +521,7 @@
             </div>
 
             <!-- 专著 -->
-            <div class="books">
+            <div id="books" class="books">
                 <h3 data-lang="zh">专著</h3>
                 <h3 data-lang="en" style="display: none;">Books</h3>
                 <div class="book-list">
@@ -500,7 +547,7 @@
             </div>
 
             <!-- 专利 -->
-            <div class="patents">
+            <div id="patents" class="patents">
                 <h3 data-lang="zh">专利</h3>
                 <h3 data-lang="en" style="display: none;">Patents</h3>
                 <div class="patent-list">
@@ -592,7 +639,7 @@
             </div>
 
             <!-- 软件著作权 -->
-            <div class="software-copyrights">
+            <div id="copyrights" class="software-copyrights">
                 <h3 data-lang="zh">软件著作权</h3>
                 <h3 data-lang="en" style="display: none;">Software Copyrights</h3>
                 <div class="copyright-list">
@@ -684,8 +731,8 @@
             </div>
 
             <!-- 标准 -->
-            <div class="standards">
-                <h3 data-lang="zh">标准</h3>
+            <div id="standards" class="standards">
+                <h3 data-lang="zh">参编标准</h3>
                 <h3 data-lang="en" style="display: none;">Standards</h3>
                 <div class="standard-list">
                     <div class="standard-item">
@@ -742,7 +789,7 @@
             <p class="section-description" data-lang="zh">留白-工程Newmark</p>
             
             <!-- 技术服务方向 -->
-            <div class="service-capabilities">
+            <div id="services" class="service-capabilities">
                 <h3 data-lang="zh">技术服务方向</h3>
                 <h3 data-lang="en" style="display: none;">Service Capabilities</h3>
                 <div class="service-list">
@@ -786,7 +833,7 @@
             </div>
 
             <!-- 案例墙 -->
-            <div class="case-studies">
+            <div id="cases" class="case-studies">
                 <h3 data-lang="zh">代表性工程案例</h3>
                 <h3 data-lang="en" style="display: none;">Case Studies</h3>
                 
@@ -1067,6 +1114,55 @@
             <h2 data-lang="zh">萝卜Claw的数字玩具</h2>
             <p class="section-description" data-lang="zh">萝卜claw，深度思考！</p>
             
+            <!-- 萝卜Claw人物介绍 -->
+            <div class="claw-intro">
+                <img src="#" alt="萝卜Claw" class="claw-avatar">
+                <div class="claw-info">
+                    <div class="claw-name">萝卜Claw</div>
+                    <div class="claw-divider"></div>
+                    <p class="claw-bio">本站的 idea 提出者、设计者与开发者。李吉超家属，碳基智能体一枚，玩转各种大模型根本停不下来——人送外号"萝卜Claw"。专业履历有点跳：土木结构出身，抗震试验转行结构设计转行产品经理+试图转行独立开发。工程结构抗震/动力分析软件，有限元软件二次开发，吃喝玩乐小软件</p>
+                    <div class="claw-tags">
+                        <span class="tag"># 碳基智能体</span>
+                        <span class="tag"># 大模型玩家</span>
+                        <span class="tag"># 独立开发</span>
+                        <span class="tag"># 设计院转行</span>
+                    </div>
+                </div>
+                <!-- 竖向工作流时间线 -->
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="institution">哈尔滨工业大学</div>
+                            <div class="major">土木工程 · 本科</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="institution">中国地震局工程力学研究所</div>
+                            <div class="major">结构工程 · 硕士</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="institution">中国建筑科学研究院</div>
+                            <div class="major">抗震试验</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="institution">中国中元国际工程有限公司</div>
+                            <div class="major">结构设计</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="institution">因为在职所以不能透露姓名的某仿真软件公司</div>
+                            <div class="major">产品经理</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- 风电混塔建模系统 -->
             <div class="software-item featured">
                 <div class="software-header">
@@ -1097,7 +1193,7 @@
                 </div>
                 <div class="software-footer">
                         <div class="software-actions">
-                            <a href="#" class="btn primary" data-lang="zh">下载软件</a>
+                            <a href="https://github.com/luobo0531/lijichao/releases/download/v1.0/WindTowerPro.zip" class="btn primary" data-lang="zh" target="_blank">下载软件</a>
                         </div>
                     </div>
             </div>
@@ -1175,7 +1271,7 @@
     </section>
 
     <!-- 神神叨叨的大裁缝板块 -->
-    <section id="contact" class="contact">
+    <section id="misc" class="contact">
         <div class="container">
             <h2 data-lang="zh">神神叨叨的大裁缝</h2>
             <p class="section-description" data-lang="zh">留白-神神叨叨的大裁缝</p>
@@ -1190,7 +1286,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3 data-lang="zh">李吉超 专家团队</h3>
+                    <h3 data-lang="zh">李吉超</h3>
                     <h3 data-lang="en" style="display: none;">Dr. Li Jichao Research Team</h3>
                     <p data-lang="zh">从工程科学前沿到工业数字化落地</p>
                     <p data-lang="en" style="display: none;">From Engineering Science Frontiers to Industrial Digitalization</p>
@@ -1201,19 +1297,21 @@
                         <li><a href="#engineering" data-lang="zh">工程Newmark</a></li>
                         <li><a href="#software" data-lang="zh">软件Newmark</a></li>
                         <li><a href="#toys" data-lang="zh">萝卜Claw的数字玩具</a></li>
-                        <li><a href="#contact" data-lang="zh">神神叨叨的大裁缝</a></li>
+                        <li><a href="#misc" data-lang="zh">神神叨叨的大裁缝</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-lang="zh">&copy; 2026 李吉超专家团队. 保留所有权利.</p>
-                <p data-lang="en" style="display: none;">&copy; 2024 Dr. Li Jichao Research Team. All rights reserved.</p>
+                <p data-lang="zh">&copy; 2026 李吉超vs萝卜Claw. 保留所有权利.</p>
+                <p data-lang="en" style="display: none;">&copy; 2026 Dr. Li Jichao Research Team. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <!-- 回到顶部按钮 -->
     <button class="back-to-top" id="backToTop">↑</button>
+
+
 
     <script src="script.js"></script>
 </body>

@@ -16,6 +16,13 @@
     --border-radius: 8px;
     --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     --transition: all 0.3s ease;
+    --line-strong: #e8eaed;
+    --line: #e8eaed;
+    --earth-dark: #202124;
+    --earth-mid: #5f6368;
+    --stone: #5f6368;
+    --rust: #d93025;
+    --rust-light: #fce8e6;
 }
 
 body {
@@ -1118,6 +1125,163 @@ section h2::after {
     color: var(--dark-color);
 }
 
+/* 萝卜Claw人物介绍 */
+.claw-intro {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 100%;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.claw-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    flex-shrink: 0;
+}
+
+.claw-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.claw-name {
+    font-family: 'Lora', italic;
+    font-size: 1.1rem;
+    color: var(--earth-dark);
+    margin-bottom: 8px;
+}
+
+.claw-divider {
+    width: 40px;
+    height: 1px;
+    background-color: var(--line-strong);
+    margin: 8px 0;
+}
+
+.claw-bio {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--earth-mid);
+    margin-bottom: 1rem;
+}
+
+.claw-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* 竖向工作流时间线 */
+.timeline {
+    flex: 0 0 200px;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e8eaed;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+    padding-left: 30px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #1a73e8;
+    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover::before {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(26, 115, 232, 0.15);
+}
+
+.timeline-content {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--earth-dark);
+    background-color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.timeline-content .institution {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.timeline-content .major {
+    font-size: 0.8rem;
+    color: var(--stone);
+}
+
+@media (max-width: 992px) {
+    .claw-intro {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    
+    .timeline {
+        flex: 1;
+        width: 100%;
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .claw-intro {
+        text-align: center;
+    }
+    
+    .claw-avatar {
+        margin: 0 auto;
+    }
+    
+    .claw-divider {
+        margin: 8px auto;
+    }
+    
+    .timeline {
+        align-items: center;
+    }
+    
+    .timeline-item {
+        padding-left: 0;
+        text-align: left;
+    }
+}
+
 /* 合作联系板块 */
 .contact {
     background-image: url('images/caifeng.png');
@@ -1336,6 +1500,152 @@ footer {
     background-color: #1557b0;
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(26, 115, 232, 0.4);
+}
+
+/* 右侧固定目录导航样式 */
+/* 右侧目录导航 */
+.sidebar-nav {
+    display: none;
+    position: fixed;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 160px;
+    z-index: 999;
+    background: transparent;
+}
+
+@media (min-width: 1200px) {
+    .sidebar-nav {
+        display: block;
+    }
+}
+
+.sidebar-content {
+    border-left: 1.5px solid rgba(122, 61, 26, 0.2);
+    padding-left: 14px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 一级条目 */
+.sidebar-nav .level-1 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.sidebar-nav .level-1 > .nav-dot {
+    display: none;
+}
+
+.sidebar-nav .level-1 > a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: monospace;
+    letter-spacing: 0.05em;
+    color: #7a7060;
+    text-decoration: none;
+    line-height: 1.4;
+    padding: 2px 0;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.sidebar-nav .level-1 > a::before {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(122, 61, 26, 0.3);
+    background: transparent;
+    flex-shrink: 0;
+    margin-left: -18px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+/* 二级子目录 */
+.sidebar-nav .sub-nav {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-nav .sub-nav li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.sidebar-nav .sub-nav .nav-dot {
+    display: none;
+}
+
+.sidebar-nav .sub-nav a {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10px;
+    font-family: monospace;
+    color: #7a7060;
+    text-decoration: none;
+    line-height: 1.4;
+    padding: 1px 0;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.sidebar-nav .sub-nav a::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    border: 1px solid rgba(122, 61, 26, 0.25);
+    background: transparent;
+    flex-shrink: 0;
+    margin-left: -14px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+/* 高亮状态 */
+.sidebar-nav .level-1.active > a {
+    color: #7a3d1a;
+}
+
+.sidebar-nav .level-1.active > a::before {
+    background: #b05a2a;
+    border-color: #b05a2a;
+}
+
+.sidebar-nav .sub-nav li.active a {
+    color: #7a3d1a;
+}
+
+.sidebar-nav .sub-nav li.active a::before {
+    background: #b05a2a;
+    border-color: #b05a2a;
+}
+
+/* hover */
+.sidebar-nav .level-1 > a:hover {
+    color: #7a3d1a;
+}
+
+.sidebar-nav .sub-nav a:hover {
+    color: #7a3d1a;
 }
 
 /* 响应式设计 */

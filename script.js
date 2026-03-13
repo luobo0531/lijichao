@@ -1,4 +1,106 @@
 // 页面加载完成后执行
+window.addEventListener('DOMContentLoaded', function() {
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 目录导航自动高亮
+    const sections = [
+        { id: '#profile', nav: '#profile' },
+        { id: '#education', nav: '#education' },
+        { id: '#projects', nav: '#projects' },
+        { id: '#papers', nav: '#papers' },
+        { id: '#books', nav: '#books' },
+        { id: '#patents', nav: '#patents' },
+        { id: '#copyrights', nav: '#copyrights' },
+        { id: '#standards', nav: '#standards' },
+        { id: '#services', nav: '#services' },
+        { id: '#cases', nav: '#cases' },
+        { id: '#software', nav: '#software' },
+        { id: '#toys', nav: '#toys' },
+        { id: '#misc', nav: '#misc' }
+    ];
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionId = '#' + entry.target.id;
+                
+                // 移除所有激活状态
+                document.querySelectorAll('.sidebar-nav .level-1, .sidebar-nav .sub-nav li').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // 激活当前部分的链接
+                document.querySelectorAll(`.sidebar-nav a[href="${sectionId}"]`).forEach(link => {
+                    const parentLi = link.closest('li');
+                    if (parentLi) {
+                        parentLi.classList.add('active');
+                    }
+                });
+                
+                // 激活父级链接
+                if (sectionId !== '#software' && sectionId !== '#toys' && sectionId !== '#misc') {
+                    const parentLink = document.querySelector(`.sidebar-nav a[href="#${sectionId.split('#')[1].split('-')[0]}"]`);
+                    if (parentLink) {
+                        const parentLi = parentLink.closest('li');
+                        if (parentLi) {
+                            parentLi.classList.add('active');
+                        }
+                    }
+                }
+            }
+        });
+    }, observerOptions);
+
+    // 观察所有部分
+    sections.forEach(section => {
+        const element = document.querySelector(section.id);
+        if (element) {
+            observer.observe(element);
+        }
+    });
+
+    // 回到顶部按钮
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // 移动端菜单
+    window.toggleMobileMenu = function() {
+        const nav = document.querySelector('nav ul');
+        nav.classList.toggle('mobile-menu');
+    };
+});
 document.addEventListener('DOMContentLoaded', function() {
     // 初始化语言切换
     initLanguageSwitch();
