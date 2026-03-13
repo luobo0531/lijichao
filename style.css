@@ -474,6 +474,333 @@ section h2::after {
     border-bottom: none;
 }
 
+/* 科研项目样式 */
+.research-projects {
+    margin-bottom: 3rem;
+}
+
+.research-projects h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.research-projects .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.research-projects .project-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--primary-color);
+}
+
+.research-projects .project-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.research-projects .project-number {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-right: 1rem;
+    flex-shrink: 0;
+    min-width: 30px;
+}
+
+.research-projects .project-content {
+    flex: 1;
+}
+
+.research-projects .project-content p {
+    color: var(--dark-color);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 发表论文样式 */
+.publications {
+    margin-bottom: 3rem;
+}
+
+.publications h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.publications .publication-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.publications .publication-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    padding: 1.2rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--secondary-color);
+}
+
+.publications .publication-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.publications .publication-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-right: 1rem;
+    flex-shrink: 0;
+    min-width: 40px;
+}
+
+.publications .publication-content {
+    flex: 1;
+}
+
+.publications .publication-content p {
+    color: var(--dark-color);
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* 专著样式 */
+.books {
+    margin-bottom: 3rem;
+}
+
+.books h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.books .book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.books .book-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    padding: 1.3rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--accent-color);
+}
+
+.books .book-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.books .book-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-right: 1rem;
+    flex-shrink: 0;
+    min-width: 40px;
+}
+
+.books .book-content {
+    flex: 1;
+}
+
+.books .book-content p {
+    color: var(--dark-color);
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* 专利样式 */
+.patents {
+    margin-bottom: 3rem;
+}
+
+.patents h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.patents .patent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.patents .patent-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    padding: 1.2rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--accent-color);
+}
+
+.patents .patent-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.patents .patent-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-right: 1rem;
+    flex-shrink: 0;
+    min-width: 40px;
+}
+
+.patents .patent-content {
+    flex: 1;
+}
+
+.patents .patent-content p {
+    color: var(--dark-color);
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* 软件著作权样式 */
+.software-copyrights {
+    margin-bottom: 3rem;
+}
+
+.software-copyrights h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.software-copyrights .copyright-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.software-copyrights .copyright-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    padding: 1.2rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--primary-color);
+}
+
+.software-copyrights .copyright-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.software-copyrights .copyright-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-right: 1rem;
+    flex-shrink: 0;
+    min-width: 40px;
+}
+
+.software-copyrights .copyright-content {
+    flex: 1;
+}
+
+.software-copyrights .copyright-content p {
+    color: var(--dark-color);
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* 标准样式 */
+.standards {
+    margin-bottom: 3rem;
+}
+
+.standards h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.standards .standard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.standards .standard-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    padding: 1.3rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--primary-color);
+}
+
+.standards .standard-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.standards .standard-number {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-right: 1rem;
+    flex-shrink: 0;
+    min-width: 30px;
+}
+
+.standards .standard-content {
+    flex: 1;
+}
+
+.standards .standard-content p {
+    color: var(--dark-color);
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.standards .standard-content strong {
+    color: var(--dark-color);
+}
+
 /* 工程技术服务板块 */
 .engineering {
     background-image: url('images/gongcheng.png');
@@ -547,43 +874,58 @@ section h2::after {
     text-align: center;
 }
 
-.case-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+/* 项目列表样式 */
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-bottom: 3rem;
 }
 
-.case-item {
+.project-item {
     background-color: white;
+    padding: 1.5rem;
     border-radius: var(--border-radius);
-    overflow: hidden;
     transition: var(--transition);
     box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--primary-color);
 }
 
-.case-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+.project-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-.case-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.case-item h4 {
+.project-info h4 {
     font-size: 1.1rem;
     font-weight: 600;
-    margin: 1rem;
+    margin-bottom: 0.8rem;
     color: var(--dark-color);
+    line-height: 1.4;
 }
 
-.case-item p {
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.project-source, .project-date {
     color: var(--gray-color);
-    line-height: 1.6;
-    margin: 0 1rem 1rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+
+.project-source::before, .project-date::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    margin-right: 8px;
 }
 
 .cooperation-section {
