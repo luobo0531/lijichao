@@ -414,3 +414,35 @@ function initParallaxEffect() {
 
 // 初始化视差效果
 initParallaxEffect();
+
+// 定价弹窗位置调整
+function initPricingPopup() {
+    const popupWraps = document.querySelectorAll('.popup-wrap');
+    
+    popupWraps.forEach(wrap => {
+        const button = wrap.querySelector('.pricing-btn');
+        const popup = wrap.querySelector('.popup');
+        
+        if (button && popup) {
+            // 确保弹窗初始状态为隐藏
+            popup.style.display = 'none';
+            
+            // 鼠标悬停显示弹窗
+            wrap.addEventListener('mouseenter', function() {
+                // 显示弹窗
+                popup.style.display = 'block';
+            });
+            
+            // 鼠标离开隐藏弹窗
+            wrap.addEventListener('mouseleave', function() {
+                popup.style.display = 'none';
+            });
+        }
+    });
+}
+
+// 初始化定价弹窗
+initPricingPopup();
+
+// 窗口大小改变时重新调整
+window.addEventListener('resize', initPricingPopup);
