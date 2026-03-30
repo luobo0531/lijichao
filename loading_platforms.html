@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大吨位加载检测平台 - 中国地震局工程力学研究所</title>
+    <meta name="description" content="中国地震局工程力学研究所的大吨位、高速度隔震空间加载检测平台和减震装置加载检测平台。">
+    <meta name="keywords" content="大吨位加载检测平台,隔震空间加载,减震装置加载,中国地震局工程力学研究所">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 加载检测平台专用样式 */
+        .loading-platforms-section {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e9ecef 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading-platforms-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M0,100 Q50,80 100,100 T200,100" stroke="rgba(26, 115, 232, 0.05)" fill="none" stroke-width="2"/><path d="M0,50 Q50,30 100,50 T200,50" stroke="rgba(26, 115, 232, 0.05)" fill="none" stroke-width="2"/><path d="M0,150 Q50,130 100,150 T200,150" stroke="rgba(26, 115, 232, 0.05)" fill="none" stroke-width="2"/></svg>') repeat;
+            z-index: 0;
+        }
+        
+        .loading-platforms-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .loading-platforms-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1a4a7a;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .loading-platforms-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #1a73e8, #34a853);
+            border-radius: 2px;
+        }
+        
+        .loading-platforms-header p {
+            font-size: 1.1rem;
+            color: #5f6368;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .loading-platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .loading-platform-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid #e3f2fd;
+        }
+        
+        .loading-platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .loading-platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1a73e8, #34a853);
+        }
+        
+        .loading-platform-card-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading-platform-card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(26, 115, 232, 0.1)"/><circle cx="25" cy="25" r="1" fill="rgba(26, 115, 232, 0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(26, 115, 232, 0.05)"/><circle cx="75" cy="25" r="1" fill="rgba(26, 115, 232, 0.05)"/><circle cx="25" cy="75" r="1" fill="rgba(26, 115, 232, 0.05)"/></svg>') repeat;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .loading-platform-card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a4a7a;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .loading-platform-card-header p {
+            font-size: 0.9rem;
+            color: #5f6368;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .loading-platform-card-body {
+            padding: 2rem;
+        }
+        
+        .loading-platform-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table th {
+            text-align: left;
+            padding: 0.8rem;
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #e3f2fd;
+            font-weight: 600;
+            color: #1a4a7a;
+        }
+        
+        .specs-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #e3f2fd;
+            color: #5f6368;
+        }
+        
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .loading-platform-features {
+            margin-top: 1.5rem;
+        }
+        
+        .loading-platform-features h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a4a7a;
+            margin-bottom: 1rem;
+        }
+        
+        .loading-platform-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .loading-platform-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            color: #5f6368;
+        }
+        
+        .loading-platform-features li::before {
+            content: '⚙';
+            position: absolute;
+            left: 0;
+            color: #1a73e8;
+            font-size: 1rem;
+        }
+        
+        .loading-platform-overview {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e3f2fd;
+        }
+        
+        .loading-platform-overview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1a73e8, #fbbc05, #34a853);
+        }
+        
+        .loading-platform-overview h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a4a7a;
+            margin-bottom: 1.5rem;
+        }
+        
+        .loading-platform-overview p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #5f6368;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: #e3f2fd;
+            color: #1a73e8;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #bbdefb;
+        }
+        
+        .tech-badge.cma {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-color: #c8e6c9;
+        }
+        
+        .tech-badge.cnas {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            border-color: #e1bee7;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .loading-platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .loading-platform-overview {
+                padding: 2rem;
+            }
+            
+            .loading-platforms-header h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>李吉超 <span></span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html#academic">科研Newmark</a></li>
+                        <li><a href="index.html#engineering">工程Newmark</a></li>
+                        <li><a href="index.html#software">软件Newmark</a></li>
+                        <li><a href="index.html#toys">萝卜Claw专区</a></li>
+                        <li><a href="index.html#misc">神神叨叨的大裁缝</a></li>
+                        <li><a href="shaking_table.html">地震模拟振动台</a></li>
+                        <li><a href="loading_platforms.html">加载检测平台</a></li>
+                        <li class="language-switch">
+                            <button id="lang-zh" class="active">中</button>
+                            <button id="lang-en">En</button>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 加载检测平台板块 -->
+    <section class="loading-platforms-section">
+        <div class="container">
+            <div class="loading-platforms-header">
+                <h2>大吨位加载检测平台</h2>
+                <p>中国地震局工程力学研究所装备有先进的大吨位、高速度加载检测平台，为隔震和减震装置的性能测试提供专业支持</p>
+            </div>
+
+            <!-- 平台概览 -->
+            <div class="loading-platform-overview">
+                <h3>平台概览</h3>
+                <p>中国地震局工程力学研究所拥有两台先进的大吨位加载检测平台，分别是大吨位、高速度隔震空间加载检测平台和大吨位、高速度减震装置加载检测平台。这些平台具备强大的加载能力和精确的控制性能，能够满足各类隔震和减震装置的测试需求。</p>
+                <p>这些平台的建设旨在为我国的抗震减灾事业提供先进的测试手段，支持隔震和减震技术的研发与应用，为重大工程的安全提供保障。</p>
+                <div class="tech-badges">
+                    <span class="tech-badge cma">CMA认证</span>
+                    <span class="tech-badge cnas">CNAS认证</span>
+                    <span class="tech-badge">大吨位加载</span>
+                    <span class="tech-badge">高速度测试</span>
+                    <span class="tech-badge">多方向加载</span>
+                </div>
+            </div>
+
+            <!-- 平台网格 -->
+            <div class="loading-platforms-grid">
+                <!-- 隔震空间加载检测平台 -->
+                <div class="loading-platform-card">
+                    <div class="loading-platform-card-header">
+                        <h3>大吨位、高速度隔震空间加载检测平台</h3>
+                        <p>三向加载系统 | 最大动态载荷4000kN</p>
+                    </div>
+                    <div class="loading-platform-card-body">
+                        <img src="images/devise1.png" alt="隔震空间加载检测平台" class="loading-platform-image">
+                        <table class="specs-table">
+                            <tr>
+                                <th>项目</th>
+                                <th>参数</th>
+                            </tr>
+                            <tr>
+                                <td>加载方向</td>
+                                <td>水平X向、水平Y向、垂向</td>
+                            </tr>
+                            <tr>
+                                <td>水平X向和Y向最大动态载荷</td>
+                                <td>4000kN</td>
+                            </tr>
+                            <tr>
+                                <td>水平X向和Y向最大加载行程</td>
+                                <td>±1000mm</td>
+                            </tr>
+                            <tr>
+                                <td>水平X向和Y向最大加载速率</td>
+                                <td>2m/s</td>
+                            </tr>
+                            <tr>
+                                <td>垂向最大受压载荷</td>
+                                <td>40000kN</td>
+                            </tr>
+                            <tr>
+                                <td>垂向最大受拉载荷</td>
+                                <td>20000kN</td>
+                            </tr>
+                            <tr>
+                                <td>垂向最大加载行程</td>
+                                <td>800mm</td>
+                            </tr>
+                            <tr>
+                                <td>工作空间</td>
+                                <td>3m × 3m × 4m</td>
+                            </tr>
+                            <tr>
+                                <td>工作频率</td>
+                                <td>0.001Hz ~ 5Hz</td>
+                            </tr>
+                        </table>
+                        <div class="loading-platform-features">
+                            <h4>主要用途</h4>
+                            <ul>
+                                <li>隔震装置的多方向加载测试</li>
+                                <li>大型隔震支座的性能评估</li>
+                                <li>隔震系统的动态响应分析</li>
+                                <li>复杂加载条件下的隔震性能研究</li>
+                                <li>隔震装置的疲劳寿命测试</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 减震装置加载检测平台 -->
+                <div class="loading-platform-card">
+                    <div class="loading-platform-card-header">
+                        <h3>大吨位、高速度减震装置加载检测平台</h3>
+                        <p>轴向加载系统 | 最大静态载荷10000kN</p>
+                    </div>
+                    <div class="loading-platform-card-body">
+                        <img src="images/devise2.png" alt="减震装置加载检测平台" class="loading-platform-image">
+                        <table class="specs-table">
+                            <tr>
+                                <th>项目</th>
+                                <th>参数</th>
+                            </tr>
+                            <tr>
+                                <td>加载系统</td>
+                                <td>轴向加载系统</td>
+                            </tr>
+                            <tr>
+                                <td>最大静态载荷</td>
+                                <td>10000kN</td>
+                            </tr>
+                            <tr>
+                                <td>最大加载位移</td>
+                                <td>±150mm</td>
+                            </tr>
+                            <tr>
+                                <td>最大动态载荷</td>
+                                <td>4000kN</td>
+                            </tr>
+                            <tr>
+                                <td>最大加载行程</td>
+                                <td>±1000mm</td>
+                            </tr>
+                            <tr>
+                                <td>工作空间</td>
+                                <td>16m × 2m × 3m</td>
+                            </tr>
+                            <tr>
+                                <td>工作频率</td>
+                                <td>0.1Hz ~ 10Hz</td>
+                            </tr>
+                        </table>
+                        <div class="loading-platform-features">
+                            <h4>主要用途</h4>
+                            <ul>
+                                <li>减震装置的轴向加载测试</li>
+                                <li>大型减震器的性能评估</li>
+                                <li>减震系统的动态响应分析</li>
+                                <li>减震装置的疲劳寿命测试</li>
+                                <li>不同频率下的减震性能研究</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>李吉超 副研究员</h3>
+                    <p>中国地震局工程力学研究所</p>
+                    <p>专注于工程系统抗震韧性分析、智能振动控制、重大工程地震灾害风险监测与评估研究</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="index.html#academic">科研Newmark</a></li>
+                        <li><a href="index.html#engineering">工程Newmark</a></li>
+                        <li><a href="index.html#software">软件Newmark</a></li>
+                        <li><a href="index.html#toys">萝卜Claw专区</a></li>
+                        <li><a href="index.html#misc">神神叨叨的大裁缝</a></li>
+                        <li><a href="shaking_table.html">地震模拟振动台</a></li>
+                        <li><a href="loading_platforms.html">加载检测平台</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 李吉超. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        function toggleMobileMenu() {
+            const navUl = document.querySelector('nav ul');
+            navUl.classList.toggle('mobile-menu');
+        }
+
+        // 回到顶部按钮
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.className = 'back-to-top';
+        backToTopBtn.textContent = '↑';
+        document.body.appendChild(backToTopBtn);
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 语言切换
+        document.getElementById('lang-zh').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('lang-en').classList.remove('active');
+            // 这里可以添加语言切换逻辑
+        });
+
+        document.getElementById('lang-en').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('lang-zh').classList.remove('active');
+            // 这里可以添加语言切换逻辑
+        });
+    </script>
+</body>
+</html>

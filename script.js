@@ -80,20 +80,22 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // 回到顶部按钮
     const backToTopButton = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('show');
-        } else {
-            backToTopButton.classList.remove('show');
-        }
-    });
-
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (backToTopButton) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
         });
-    });
+
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     // 移动端菜单
     window.toggleMobileMenu = function() {
@@ -122,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化页面加载动画
     initPageLoadAnimation();
+    
+    // 初始化可折叠功能
+    initCollapsible();
 });
 
 // 语言切换功能
@@ -173,20 +178,22 @@ function initMobileMenu() {
 function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
     
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopBtn.classList.add('show');
-        } else {
-            backToTopBtn.classList.remove('show');
-        }
-    });
-    
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
         });
-    });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 }
 
 // 表单提交处理
@@ -446,3 +453,28 @@ initPricingPopup();
 
 // 窗口大小改变时重新调整
 window.addEventListener('resize', initPricingPopup);
+
+// 初始化可折叠功能
+function initCollapsible() {
+    // 设备信息折叠
+    const collapsibleHeader = document.querySelector('.collapsible-header');
+    const collapsibleContent = document.querySelector('.collapsible-content');
+    
+    if (collapsibleHeader && collapsibleContent) {
+        collapsibleHeader.addEventListener('click', function() {
+            this.classList.toggle('active');
+            collapsibleContent.classList.toggle('active');
+        });
+    }
+    
+    // 项目折叠
+    const projectHeaders = document.querySelectorAll('.collapsible-project-header');
+    projectHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            content.classList.toggle('active');
+        });
+    });
+}
+

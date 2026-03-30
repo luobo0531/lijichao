@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李吉超 - 工程系统抗震韧性专家</title>
+    <title>李吉超个人主页</title>
     <meta name="description" content="李吉超副研究员个人学术门户，专注于工程系统抗震韧性分析、智能振动控制、重大工程地震灾害风险监测与评估研究">
-    <meta name="keywords" content="工程系统抗震韧性,智能振动控制,地震灾害风险评估,中国地震局工程力学研究所,李吉超">
+    <meta name="keywords" content="李吉超,中国地震局工程力学研究所,工力所,工程系统抗震韧性,智能振动控制,地震灾害风险评估">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
                         <li><a href="#academic">科研Newmark</a></li>
                         <li><a href="#engineering">工程Newmark</a></li>
                         <li><a href="#software">软件Newmark</a></li>
-                        <li><a href="#toys">萝卜Claw的数字玩具</a></li>
+                        <li><a href="#toys">萝卜Claw专区</a></li>
                         <li><a href="#misc">神神叨叨的大裁缝</a></li>
                         <li class="language-switch">
                             <button id="lang-zh" class="active">中</button>
@@ -63,7 +63,9 @@
                     <a href="#engineering">工程Newmark</a>
                     <ul class="sub-nav">
                         <li data-section="services"><div class="nav-dot"></div><a href="#services">技术服务方向</a></li>
-                        <li data-section="cases"><div class="nav-dot"></div><a href="#cases">代表性工程案例</a></li>
+                        <li data-section="cases"><div class="nav-dot"></div><a href="#cases">抗震性能试验</a></li>
+                        <li data-section="simulation"><div class="nav-dot"></div><a href="#simulation">仿真·分析·易损性</a></li>
+                        <li data-section="resilience"><div class="nav-dot"></div><a href="#resilience">韧性评价</a></li>
                     </ul>
                 </li>
                 <!-- 软件Newmark -->
@@ -71,10 +73,10 @@
                     <div class="nav-dot"></div>
                     <a href="#software">软件Newmark</a>
                 </li>
-                <!-- 萝卜Claw的数字玩具 -->
+                <!-- 萝卜Claw专区 -->
                 <li class="nav-item level-1" data-section="toys">
                     <div class="nav-dot"></div>
-                    <a href="#toys">萝卜Claw的数字玩具</a>
+                    <a href="#toys">萝卜Claw专区</a>
                 </li>
                 <!-- 神神叨叨的大裁缝 -->
                 <li class="nav-item level-1" data-section="misc">
@@ -99,7 +101,148 @@
                     </p>
                 </div>
                 <div class="hero-image">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=structural%20engineering%20laboratory%20with%20testing%20equipment%2C%20professional%20setting%2C%20technical%20background%2C%20high%20quality%2C%20blue%20tone&image_size=landscape_16_9" alt="工程实验室">
+                    <style>
+                    .bubble-wrap{position:relative;width:150%;height:320px;overflow:hidden;border-radius:12px;left: -50%;}
+                    .bubble{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:default;user-select:none;}
+                    .bubble span.label{font-size:11px;font-weight:500;text-align:center;line-height:1.3;position:relative;z-index:1;}
+                    .bubble span.pct{font-size:10px;opacity:0.75;position:relative;z-index:1;}
+                    </style>
+                    
+                    <div class="bubble-wrap" id="bw">
+                    <canvas id="bc" style="position:absolute;top:0;left:0;width:100%;height:100%;"></canvas>
+                    </div>
+                    
+                    <script>
+                    const data = [
+                      {label:'地震动', color:'rgba(56,130,221,', r:34},
+                      {label:'电力系统', color:'rgba(66,166,166,', r:52},
+                      {label:'变电站', color:'rgba(29,158,117,', r:49},
+                      {label:'核电', color:'rgba(127,119,221,', r:44},
+                      {label:'减震', color:'rgba(216,90,48,', r:26},
+                      {label:'隔震', color:'rgba(186,117,23,', r:40},
+                      {label:'振动台试验', color:'rgba(212,83,126,', r:43},
+                      {label:'供水管网', color:'rgba(100,180,200,', r:38},
+                      {label:'建筑结构', color:'rgba(160,90,200,', r:30},
+                      {label:'抗震韧性', color:'rgba(255,152,0,', r:60},
+                      {label:'浮放文物', color:'rgba(156,39,176,', r:25},
+                      {label:'炒股', color:'rgba(233,30,99,', r:20},
+                      {label:'健身', color:'rgba(63,81,181,', r:20},
+                      {label:'钓鱼', color:'rgba(0,121,107,', r:15},
+                    ];
+                    
+                    const wrap = document.getElementById('bw');
+                    const canvas = document.getElementById('bc');
+                    
+                    function init(){
+                      const W = wrap.offsetWidth;
+                      const H = wrap.offsetHeight;
+                      canvas.width = W * devicePixelRatio;
+                      canvas.height = H * devicePixelRatio;
+                      canvas.style.width = W+'px';
+                      canvas.style.height = H+'px';
+                      const ctx = canvas.getContext('2d');
+                      ctx.scale(devicePixelRatio, devicePixelRatio);
+                    
+                      const bubbles = data.map((d,i)=>{
+                        const r = d.r;
+                        const x = r + Math.random()*(W - r*2);
+                        const y = r + Math.random()*(H - r*2);
+                        const vx = (Math.random()-0.5)*0.5;
+                        const vy = (Math.random()-0.5)*0.5;
+                        return {...d, x, y, vx, vy, r, W, H};
+                      });
+                    
+                      // 气泡碰撞检测和分离
+                      function separateBubbles() {
+                        for (let i = 0; i < bubbles.length; i++) {
+                          for (let j = i + 1; j < bubbles.length; j++) {
+                            const b1 = bubbles[i];
+                            const b2 = bubbles[j];
+                            const dx = b2.x - b1.x;
+                            const dy = b2.y - b1.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            const minDist = b1.r + b2.r + 5; // 最小间距5像素
+                            
+                            if (dist < minDist && dist > 0) {
+                              const overlap = minDist - dist;
+                              const nx = dx / dist;
+                              const ny = dy / dist;
+                              const force = overlap * 0.02;
+                              
+                              b1.vx -= nx * force;
+                              b1.vy -= ny * force;
+                              b2.vx += nx * force;
+                              b2.vy += ny * force;
+                            }
+                          }
+                        }
+                      }
+                      
+                      function draw(){
+                        ctx.clearRect(0,0,W,H);
+                        
+                        // 执行气泡分离
+                        separateBubbles();
+                        
+                        bubbles.forEach(b=>{
+                          b.x += b.vx;
+                          b.y += b.vy;
+                          
+                          // 保持匀速运动 - 如果速度太小，重新赋予一个固定速度
+                          const currentSpeed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+                          if (currentSpeed < 0.2 || currentSpeed > 0.8) {
+                            const targetSpeed = 0.3;
+                            const angle = Math.atan2(b.vy, b.vx);
+                            b.vx = Math.cos(angle) * targetSpeed;
+                            b.vy = Math.sin(angle) * targetSpeed;
+                          }
+                          
+                          // 边界反弹 - 保持速度大小不变，只改变方向
+                          if(b.x - b.r < 0){b.x = b.r; b.vx = Math.abs(b.vx);}
+                          if(b.x + b.r > W){b.x = W - b.r; b.vx = -Math.abs(b.vx);}
+                          if(b.y - b.r < 0){b.y = b.r; b.vy = Math.abs(b.vy);}
+                          if(b.y + b.r > H){b.y = H - b.r; b.vy = -Math.abs(b.vy);}
+                        
+                          const grad = ctx.createRadialGradient(
+                            b.x - b.r*0.25, b.y - b.r*0.25, b.r*0.1,
+                            b.x, b.y, b.r
+                          );
+                          grad.addColorStop(0, b.color+'0.55)');
+                          grad.addColorStop(0.6, b.color+'0.30)');
+                          grad.addColorStop(1, b.color+'0.05)');
+                        
+                          ctx.beginPath();
+                          ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+                          ctx.fillStyle = grad;
+                          ctx.fill();
+                        
+                          ctx.beginPath();
+                          ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+                          ctx.strokeStyle = b.color+'0.45)';
+                          ctx.lineWidth = 1;
+                          ctx.stroke();
+                        
+                          // 内圈光晕
+                          ctx.beginPath();
+                          ctx.arc(b.x - b.r*0.2, b.y - b.r*0.2, b.r*0.25, 0, Math.PI*2);
+                          ctx.fillStyle = b.color+'0.18)';
+                          ctx.fill();
+                        
+                          // 文字居中显示
+                          ctx.fillStyle = 'rgba(20,30,60,0.85)';
+                          ctx.font = `500 ${Math.max(10, b.r*0.22)}px system-ui,sans-serif`;
+                          ctx.textAlign = 'center';
+                          ctx.textBaseline = 'middle';
+                          ctx.fillText(b.label, b.x, b.y);
+                        });
+                        requestAnimationFrame(draw);
+                      }
+                      draw();
+                    }
+                    
+                    if(wrap.offsetWidth > 0){init();}
+                    else{setTimeout(init,100);}
+                    </script>
                 </div>
             </div>
         </div>
@@ -109,12 +252,12 @@
     <section id="academic" class="academic">
         <div class="container">
             <h2 data-lang="zh">科研Newmark</h2>
-            <p class="section-description" data-lang="zh">作为一名从事工程抗震研究的科研牛马（Newmark），谨以此谐音梗致敬 Newmark-β 法！</p>
+            <p class="section-description" data-lang="zh">你我皆牛马，Newmark-β！作为一名从事工程抗震研究的科研牛马（Newmark），谨以此谐音梗致敬 Newmark-β 法！</p>
             
             <!-- 个人简介 -->
             <div id="profile" class="profile-section">
                 <div class="profile-image">
-                    <img src="images/pig.png" alt="李吉超">
+                    <img src="https://cdn.jsdelivr.net/gh/luobo0531/lijichao@main/images/pig.png" alt="李吉超">
                 </div>
                 <div class="profile-content">
                     <h3 data-lang="zh">李吉超 副研究员</h3>
@@ -788,156 +931,1411 @@
     <section id="engineering" class="engineering">
         <div class="container">
             <h2 data-lang="zh">工程Newmark</h2>
-            <p class="section-description" data-lang="zh">留白-工程Newmark</p>
+            <p class="section-description" data-lang="zh">自强不息，厚德载物！规格严格，功夫到家！依托工力所，承接横向项目</p>
             
             <!-- 技术服务方向 -->
             <div id="services" class="service-capabilities">
                 <h3 data-lang="zh">技术服务方向</h3>
                 <h3 data-lang="en" style="display: none;">Service Capabilities</h3>
-                <div class="service-list">
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=electrical%20substation%20icon%2C%20simple%20design%2C%20blue%20color%2C%20vector%20style&image_size=square" alt="变电站分析">
-                        </div>
-                        <h4 data-lang="zh">变电站震害分析</h4>
-                        <h4 data-lang="en" style="display: none;">Substation Seismic Analysis</h4>
-                        <p data-lang="zh">提供变电站结构的地震响应分析、脆弱性评估及抗震加固方案。</p>
-                        <p data-lang="en" style="display: none;">Providing seismic response analysis, vulnerability assessment, and seismic strengthening solutions for substation structures.</p>
+                
+                <style>
+                .sw{padding:1.5rem 0;font-family:var(--font-sans);}
+                .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+                .col-group{
+                  border:1px solid #E3F2FD;
+                  border-radius:16px;
+                  overflow:hidden;
+                  background:#FFFFFF;
+                  position:relative;
+                }
+                .col-group:nth-child(1){
+                  border-color: #E3F2FD;
+                  background: #FFFFFF;
+                }
+                .col-group:nth-child(1) .col-head{
+                  background: #BBDEFB;
+                }
+                .col-group:nth-child(1) .scard-icon-row{
+                  background: #F5F9FF;
+                }
+                .col-group:nth-child(1) .scard-icon-wrap{
+                  background: #90CAF9;
+                }
+                .col-group:nth-child(1) .scard-title{
+                  color: #1565C0;
+                }
+                .col-group:nth-child(1) .scard-sub{
+                  color: #1565C0;
+                }
+                .col-group:nth-child(1) .divider-line{
+                  background: linear-gradient(90deg,transparent,#BBDEFB,transparent);
+                }
+                .col-group:nth-child(1) .divider-dot{
+                  background: #BBDEFB;
+                }
+                .col-group:nth-child(1) .col-head-deco path{
+                  stroke: #BBDEFB;
+                }
+                .col-group:nth-child(1) .corner-tl path,
+                .col-group:nth-child(1) .corner-br path{
+                  stroke: #BBDEFB;
+                }
+                .col-group:nth-child(1) .tick-deco circle{
+                  fill: #90CAF9;
+                }
+                
+                .col-group:nth-child(2){
+                  border-color: #E8F5E9;
+                  background: #FFFFFF;
+                }
+                .col-group:nth-child(2) .col-head{
+                  background: #C8E6C9;
+                }
+                .col-group:nth-child(2) .scard-icon-row{
+                  background: #F1F8E9;
+                }
+                .col-group:nth-child(2) .scard-icon-wrap{
+                  background: #A5D6A7;
+                }
+                .col-group:nth-child(2) .scard-title{
+                  color: #2E7D32;
+                }
+                .col-group:nth-child(2) .scard-sub{
+                  color: #2E7D32;
+                }
+                .col-group:nth-child(2) .divider-line{
+                  background: linear-gradient(90deg,transparent,#C8E6C9,transparent);
+                }
+                .col-group:nth-child(2) .divider-dot{
+                  background: #C8E6C9;
+                }
+                .col-group:nth-child(2) .col-head-deco path{
+                  stroke: #C8E6C9;
+                }
+                .col-group:nth-child(2) .corner-tl path,
+                .col-group:nth-child(2) .corner-br path{
+                  stroke: #C8E6C9;
+                }
+                .col-group:nth-child(2) .tick-deco circle{
+                  fill: #A5D6A7;
+                }
+                
+                .col-group:nth-child(3){
+                  border-color: #F3E5F5;
+                  background: #FFFFFF;
+                }
+                .col-group:nth-child(3) .col-head{
+                  background: #E1BEE7;
+                }
+                .col-group:nth-child(3) .scard-icon-row{
+                  background: #F8F0FF;
+                }
+                .col-group:nth-child(3) .scard-icon-wrap{
+                  background: #CE93D8;
+                }
+                .col-group:nth-child(3) .scard-title{
+                  color: #6A1B9A;
+                }
+                .col-group:nth-child(3) .scard-sub{
+                  color: #6A1B9A;
+                }
+                .col-group:nth-child(3) .divider-line{
+                  background: linear-gradient(90deg,transparent,#E1BEE7,transparent);
+                }
+                .col-group:nth-child(3) .divider-dot{
+                  background: #E1BEE7;
+                }
+                .col-group:nth-child(3) .col-head-deco path{
+                  stroke: #E1BEE7;
+                }
+                .col-group:nth-child(3) .corner-tl path,
+                .col-group:nth-child(3) .corner-br path{
+                  stroke: #E1BEE7;
+                }
+                .col-group:nth-child(3) .tick-deco circle{
+                  fill: #CE93D8;
+                }
+                
+                .col-head{
+                  padding:14px 16px 12px;
+                  text-align:center;
+                  position:relative;
+                  overflow:hidden;
+                }
+                .col-head-label{
+                  font-size:16px;
+                  font-weight:700;
+                  color:#263238;
+                  letter-spacing:0.14em;
+                  text-transform:uppercase;
+                  position:relative;z-index:1;
+                }
+                .col-head-deco{
+                  position:absolute;left:0;top:0;width:100%;height:100%;opacity:0.12;
+                }
+                .divider-area{
+                  padding:10px 16px;
+                  display:flex;align-items:center;gap:8px;
+                }
+                .divider-line{flex:1;height:1px;}
+                .divider-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+                .scard{
+                  margin:0 12px 12px;
+                  border:0.5px solid #E3F2FD;
+                  border-radius:10px;
+                  overflow:hidden;
+                  background:#fff;
+                  text-align:center;
+                }
+                .col-group:nth-child(2) .scard{
+                  border-color: #E8F5E9;
+                }
+                .col-group:nth-child(3) .scard{
+                  border-color: #F3E5F5;
+                }
+                .scard:first-of-type{margin-top:0;}
+                .scard-icon-row{
+                  padding:16px 12px 10px;
+                  position:relative;overflow:hidden;
+                }
+                .scard-icon-wrap{
+                  width:50px;height:50px;
+                  border-radius:10px;
+                  margin:0 auto 12px;
+                  display:flex;align-items:center;justify-content:center;
+                  position:relative;z-index:1;
+                }
+                .scard-icon-wrap svg{
+                  fill: #263238;
+                  width: 28px;
+                  height: 28px;
+                }
+                .scard-title{
+                  font-size:16px;font-weight:700;
+                  line-height:1.4;
+                  position:relative;z-index:1;
+                  color: #263238;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+                .scard{
+                  margin:0 12px 12px;
+                  border:0.5px solid #E3F2FD;
+                  border-radius:10px;
+                  overflow:hidden;
+                  background:#fff;
+                  text-align:center;
+                  min-width: 250px;
+                }
+                .scard-sub{
+                  padding:10px 14px 12px;
+                  font-size:14px;line-height:1.7;
+                  color: #455A64;
+                }
+                .tick-deco{position:absolute;right:-6px;top:-6px;opacity:0.06;}
+                .corner-tl{position:absolute;left:6px;top:6px;}
+                .corner-br{position:absolute;right:6px;bottom:6px;transform:rotate(180deg);}
+                </style>
+                
+                <div class="sw">
+                <div class="grid3">
+                
+                  <!-- 列1：试验项目 -->
+                  <div class="col-group">
+                    <div class="col-head">
+                      <svg class="col-head-deco" viewBox="0 0 200 44" preserveAspectRatio="none">
+                        <path d="M0,22 L15,22 L19,10 L24,34 L28,6 L34,38 L39,16 L44,28 L49,20 L54,25 L59,22 L80,22 L84,12 L89,32 L93,8 L99,36 L104,18 L109,28 L114,22 L140,22 L144,14 L148,30 L152,9 L158,35 L163,19 L168,27 L173,22 L200,22" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                      <div class="col-head-label">抗震性能试验</div>
                     </div>
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=water%20pipe%20network%20icon%2C%20simple%20design%2C%20blue%20color%2C%20vector%20style&image_size=square" alt="供水管网分析">
+                
+                    <div style="height:12px;"></div>
+                
+                    <!-- 卡片1 -->
+                    <div class="scard">
+                      <div class="scard-icon-row">
+                        <svg class="tick-deco" width="70" height="70" viewBox="0 0 70 70"><circle cx="60" cy="10" r="50"/></svg>
+                        <!-- 角标 -->
+                        <svg class="corner-tl" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <svg class="corner-br" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <div class="scard-icon-wrap">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="6" width="20" height="4" rx="1.2" fill="#E8F5E9"/>
+                            <rect x="2" y="6" width="20" height="1.5" rx="1.2" fill="#E8F5E9" opacity="0.7"/>
+                            <rect x="4" y="10" width="2.5" height="6" rx="0.8" fill="#E8F5E9"/>
+                            <rect x="8" y="10" width="2.5" height="8" rx="0.8" fill="#E8F5E9"/>
+                            <rect x="12" y="10" width="2.5" height="5" rx="0.8" fill="#E8F5E9"/>
+                            <rect x="16.5" y="10" width="2.5" height="7" rx="0.8" fill="#E8F5E9"/>
+                            <rect x="2" y="19" width="20" height="2" rx="0.8" fill="#E8F5E9"/>
+                            <circle cx="6" cy="8" r="0.9" fill="#E8F5E9"/>
+                            <circle cx="12" cy="8" r="0.9" fill="#E8F5E9"/>
+                            <circle cx="18" cy="8" r="0.9" fill="#E8F5E9"/>
+                          </svg>
                         </div>
-                        <h4 data-lang="zh">供水管网地震脆弱性分析</h4>
-                        <h4 data-lang="en" style="display: none;">Water Supply Network Seismic Vulnerability Analysis</h4>
-                        <p data-lang="zh">评估供水管网在地震作用下的脆弱性，提供韧性提升方案。</p>
-                        <p data-lang="en" style="display: none;">Assessing the vulnerability of water supply networks under seismic action and providing resilience improvement solutions.</p>
+                        <div class="scard-title">振动台试验</div>
+                      </div>
+                      <div class="scard-sub">依托工力所地震模拟振动台实验室，承接各类结构与设备的抗震性能试验，具备CMA资质认证。</div>
                     </div>
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=building%20structure%20icon%2C%20simple%20design%2C%20blue%20color%2C%20vector%20style&image_size=square" alt="结构抗震咨询">
+                
+                    <!-- 分组连接装饰 -->
+                    <div class="divider-area">
+                      <div class="divider-line"></div>
+                      <div class="divider-dot"></div>
+                      <div class="divider-line"></div>
+                    </div>
+                
+                    <!-- 卡片2 -->
+                    <div class="scard">
+                      <div class="scard-icon-row">
+                        <svg class="tick-deco" width="70" height="70" viewBox="0 0 70 70"><circle cx="60" cy="10" r="50"/></svg>
+                        <svg class="corner-tl" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <svg class="corner-br" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <div class="scard-icon-wrap">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="9" width="18" height="3" rx="1" fill="#E8F5E9"/>
+                            <rect x="9.5" y="4" width="5" height="5" rx="1" fill="#E8F5E9"/>
+                            <rect x="9.5" y="12" width="5" height="5" rx="1" fill="#E8F5E9"/>
+                            <rect x="3" y="18" width="18" height="2" rx="0.8" fill="#E8F5E9"/>
+                            <circle cx="12" cy="11.5" r="2" fill="none" stroke="#E8F5E9" stroke-width="1"/>
+                          </svg>
                         </div>
-                        <h4 data-lang="zh">结构抗震咨询</h4>
-                        <h4 data-lang="en" style="display: none;">Structural Seismic Consultation</h4>
-                        <p data-lang="zh">为各类建筑结构提供专业的抗震设计咨询和评估服务。</p>
-                        <p data-lang="en" style="display: none;">Providing professional seismic design consultation and assessment services for various building structures.</p>
+                        <div class="scard-title">隔震支座 · 阻尼器<br>力学性能试验</div>
+                      </div>
+                      <div class="scard-sub">承接隔震支座与阻尼器的静动力学性能测试，提供试验数据与分析报告。</div>
                     </div>
-                    <div class="service-item">
-                        <div class="service-icon">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=laboratory%20testing%20icon%2C%20simple%20design%2C%20blue%20color%2C%20vector%20style&image_size=square" alt="试验方案设计">
+                
+                    <div style="height:12px;"></div>
+                  </div>
+                
+                  <!-- 列2：仿真·分析·易损性 -->
+                  <div class="col-group">
+                    <div class="col-head">
+                      <svg class="col-head-deco" viewBox="0 0 200 44" preserveAspectRatio="none">
+                        <path d="M0,22 L20,22 L24,14 L28,30 L32,8 L38,36 L43,18 L48,26 L53,22 L80,22 L84,16 L88,28 L92,10 L98,34 L103,20 L108,26 L113,22 L145,22 L149,13 L153,31 L157,7 L163,37 L168,17 L173,27 L178,22 L200,22" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                      <div class="col-head-label">仿真·分析·易损性</div>
+                    </div>
+                
+                    <div style="height:12px;"></div>
+                
+                    <div class="scard">
+                      <div class="scard-icon-row">
+                        <svg class="tick-deco" width="70" height="70" viewBox="0 0 70 70"><circle cx="60" cy="10" r="50"/></svg>
+                        <svg class="corner-tl" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <svg class="corner-br" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <div class="scard-icon-wrap">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="15" width="3.5" height="6" rx="0.8" fill="#E8F5E9"/>
+                            <rect x="7" y="11" width="3.5" height="10" rx="0.8" fill="#E8F5E9"/>
+                            <rect x="12" y="7" width="3.5" height="14" rx="0.8" fill="#E8F5E9"/>
+                            <rect x="17.5" y="9" width="3.5" height="12" rx="0.8" fill="#E8F5E9"/>
+                            <polyline points="3.7,14 8.7,10 13.7,6 19,8" fill="none" stroke="#E8F5E9" stroke-width="1.2" stroke-linecap="round"/>
+                          </svg>
                         </div>
-                        <h4 data-lang="zh">复杂试验方案设计</h4>
-                        <h4 data-lang="en" style="display: none;">Complex Test Scheme Design</h4>
-                        <p data-lang="zh">设计并实施各类结构动力试验方案，提供专业的试验数据分析。</p>
-                        <p data-lang="en" style="display: none;">Designing and implementing various structural dynamic test schemes and providing professional test data analysis.</p>
+                        <div class="scard-title">数值模拟与减隔震设计</div>
+                      </div>
+                      <div class="scard-sub">基于Abaqus、SAP2000、ETABS等软件，提供结构与设备的地震响应分析及减隔震设计方案。</div>
                     </div>
+                
+                    <div class="divider-area">
+                      <div class="divider-line"></div>
+                      <div class="divider-dot"></div>
+                      <div class="divider-line"></div>
+                    </div>
+                
+                    <div class="scard">
+                      <div class="scard-icon-row">
+                        <svg class="tick-deco" width="70" height="70" viewBox="0 0 70 70"><circle cx="60" cy="10" r="50"/></svg>
+                        <svg class="corner-tl" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <svg class="corner-br" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <div class="scard-icon-wrap">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M3,19 Q6,5 9,10 Q11,14 13,7 Q15,2 17,10 Q19,16 21,19" fill="none" stroke="#E8F5E9" stroke-width="1.6" stroke-linecap="round"/>
+                            <line x1="3" y1="19" x2="21" y2="19" stroke="#E8F5E9" stroke-width="0.8"/>
+                            <circle cx="9" cy="10" r="1.3" fill="#E8F5E9"/>
+                            <circle cx="13" cy="7" r="1.3" fill="#E8F5E9"/>
+                            <circle cx="17" cy="10" r="1.3" fill="#E8F5E9"/>
+                          </svg>
+                        </div>
+                        <div class="scard-title">地震易损性分析</div>
+                      </div>
+                      <div class="scard-sub">基于概率方法，量化结构与设备在不同地震强度下的损伤概率。</div>
+                    </div>
+                
+                    <div style="height:12px;"></div>
+                  </div>
+                
+                  <!-- 列3：韧性评价 -->
+                  <div class="col-group">
+                    <div class="col-head">
+                      <svg class="col-head-deco" viewBox="0 0 200 44" preserveAspectRatio="none">
+                        <path d="M0,22 L18,22 L22,12 L27,32 L31,7 L37,37 L42,17 L47,27 L52,22 L75,22 L79,15 L83,29 L87,11 L93,33 L98,19 L103,25 L108,22 L140,22 L144,13 L148,31 L152,8 L158,36 L163,18 L168,27 L173,22 L200,22" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                      <div class="col-head-label">韧性评价</div>
+                    </div>
+                
+                    <div style="height:12px;"></div>
+                
+                    <div class="scard">
+                      <div class="scard-icon-row">
+                        <svg class="tick-deco" width="70" height="70" viewBox="0 0 70 70"><circle cx="60" cy="10" r="50"/></svg>
+                        <svg class="corner-tl" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <svg class="corner-br" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <div class="scard-icon-wrap">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="8" width="4.5" height="7" rx="1" fill="#E8F5E9"/>
+                            <rect x="9.5" y="6" width="4.5" height="9" rx="1" fill="#E8F5E9"/>
+                            <rect x="16" y="8" width="4.5" height="7" rx="1" fill="#E8F5E9"/>
+                            <line x1="7.5" y1="11.5" x2="9.5" y2="11.5" stroke="#E8F5E9" stroke-width="1"/>
+                            <line x1="14" y1="11.5" x2="16" y2="11.5" stroke="#E8F5E9" stroke-width="1"/>
+                            <line x1="3" y1="18" x2="21" y2="18" stroke="#E8F5E9" stroke-width="0.8" stroke-dasharray="3,2"/>
+                          </svg>
+                        </div>
+                        <div class="scard-title">电力系统韧性评价</div>
+                      </div>
+                      <div class="scard-sub">评估变电站及城市电力网络的震后功能损失与恢复能力，提供韧性提升方案。</div>
+                    </div>
+                
+                    <div class="divider-area">
+                      <div class="divider-line"></div>
+                      <div class="divider-dot"></div>
+                      <div class="divider-line"></div>
+                    </div>
+                
+                    <div class="scard">
+                      <div class="scard-icon-row">
+                        <svg class="tick-deco" width="70" height="70" viewBox="0 0 70 70"><circle cx="60" cy="10" r="50"/></svg>
+                        <svg class="corner-tl" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <svg class="corner-br" width="12" height="12" viewBox="0 0 12 12"><path d="M1,8 L1,1 L8,1" fill="none" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        <div class="scard-icon-wrap">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="8" fill="none" stroke="#E8F5E9" stroke-width="1.2"/>
+                            <circle cx="12" cy="12" r="4.5" fill="none" stroke="#E8F5E9" stroke-width="0.8"/>
+                            <line x1="12" y1="4" x2="12" y2="20" stroke="#E8F5E9" stroke-width="0.7" stroke-dasharray="2,1.5"/>
+                            <line x1="4" y1="12" x2="20" y2="12" stroke="#E8F5E9" stroke-width="0.7" stroke-dasharray="2,1.5"/>
+                            <circle cx="12" cy="12" r="1.8" fill="#E8F5E9"/>
+                          </svg>
+                        </div>
+                        <div class="scard-title">供水管网韧性评价</div>
+                      </div>
+                      <div class="scard-sub">评估城市供水管网震后水力功能损失，识别脆弱节点，提供韧性提升建议。</div>
+                    </div>
+                
+                    <div style="height:12px;"></div>
+                  </div>
+                
+                </div>
                 </div>
             </div>
 
             <!-- 案例墙 -->
             <div id="cases" class="case-studies">
-                <h3 data-lang="zh">代表性工程案例</h3>
+                <h3 data-lang="zh">抗震性能试验</h3>
                 <h3 data-lang="en" style="display: none;">Case Studies</h3>
                 
-                <!-- 项目列表 -->
-                <div class="project-list">
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>堆芯柱群组件振动台试验研究</h4>
+                <!-- 顶部资质说明条 -->
+                <div style="background-color: var(--light-color); border-left: 3px solid var(--primary-color); padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                    <div style="background-color: #0C447C; color: white; font-size: 14px; font-weight: 500; padding: 4px 12px; border-radius: 99px;">CMA</div>
+                    <div style="background-color: #0C447C; color: white; font-size: 14px; font-weight: 500; padding: 4px 12px; border-radius: 99px;">CNAS</div>
+                    <p style="font-size: 16px; color: var(--dark-color); margin: 0; flex: 1;">实验室具备双重资质认证，可承接检测类试验（出具法律效力报告）与研究类试验。</p>
+                </div>
+                
+                <!-- 三列主体网格 -->
+                <div style="border: 0.5px solid var(--light-gray); border-radius: 10px; overflow: hidden; margin-bottom: 2rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;">
+                        <!-- 第一列：振动台试验 -->
+                        <div style="border-right: 1px solid var(--light-gray); background-color: #F0F4F8; opacity: 0.85;">
+                            <!-- 列头 -->
+                            <div style="padding: 16px 20px; border-bottom: 1px solid var(--light-gray); background-color: #E6EEF5; opacity: 0.9; text-align: center;">
+                                <h4 style="font-size: 20px; font-weight: 500; margin: 0 0 6px 0; color: black;">振动台试验</h4>
+                                <p style="font-size: 12px; color: black; margin: 0;">地震模拟振动台</p>
+                            </div>
+                            
+                            <!-- 研究类区块 -->
+                            <div style="padding: 16px 20px; background-color: #F5F9FC; opacity: 0.9;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                    <div style="width: 3px; height: 20px; background-color: #94A3B8; flex-shrink: 0;"></div>
+                                    <span style="font-size: 14px; color: black; letter-spacing: 0.05em; text-transform: uppercase;">研究类</span>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                    <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">抗震性能研究</span>
+                                    <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">动力响应分析</span>
+                                    <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">隔震效果验证</span>
+                                    <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">流固耦合试验</span>
+                                    <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">动力特性识别</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 检测类区块 -->
+                            <div style="padding: 16px 20px; background-color: #F0F4F8; opacity: 0.9;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                    <div style="width: 3px; height: 20px; background-color: #64748B; flex-shrink: 0;"></div>
+                                    <span style="font-size: 14px; color: black; letter-spacing: 0.05em; text-transform: uppercase;">检测类</span>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                    <span style="background-color: #E2E8F0; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">抗震鉴定</span>
+                                    <span style="background-color: #E2E8F0; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">抗震型式试验</span>
+                                    <span style="background-color: #E2E8F0; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">设备抗震检测</span>
+                                    <span style="background-color: #E2E8F0; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">隔震装置检测</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 适用对象 -->
+                            <div style="padding: 14px 20px; border-top: 1px solid var(--light-gray); display: flex; flex-wrap: wrap; gap: 10px; background-color: #E6EEF5; opacity: 0.9;">
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">电力设备</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">核电构件</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">建筑结构</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">非结构构件</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">文物保护</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">工业设备</span>
+                            </div>
+                            
+                            <!-- 跳转链接行 -->
+                            <!-- <div style="padding: 12px 20px 16px; background-color: #F0F4F8; opacity: 0.9;">
+                                <a href="#papers" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block;">→ 查看相关论文与科研项目</a>
+                            </div> -->
+                        </div>
+                        
+                        <!-- 第二列：隔振支座试验 -->
+                        <div style="border-right: 1px solid var(--light-gray); background-color: #F0F7F0; opacity: 0.85;">
+                            <!-- 列头 -->
+                            <div style="padding: 16px 20px; border-bottom: 1px solid var(--light-gray); background-color: #E6F3E6; opacity: 0.9; text-align: center;">
+                                <h4 style="font-size: 20px; font-weight: 500; margin: 0 0 6px 0; color: black;">隔振支座试验</h4>
+                                <p style="font-size: 12px; color: black; margin: 0;">压剪机·隔震空间加载检测平台</p>
+                            </div>
+                            
+                            <!-- 研究类区块 -->
+                            <div style="padding: 16px 20px; background-color: #F5FAF5; opacity: 0.9;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                    <div style="width: 3px; height: 20px; background-color: #94A3B8; flex-shrink: 0;"></div>
+                                    <span style="font-size: 14px; color: black; letter-spacing: 0.05em; text-transform: uppercase;">研究类</span>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                    <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">支座力学性能研究</span>
+                                    <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">隔震参数标定</span>
+                                    <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">新型支座研发验证</span>
+                                    <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">摩擦系数测定</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 检测类区块 -->
+                            <div style="padding: 16px 20px; background-color: #F0F7F0; opacity: 0.9;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                    <div style="width: 3px; height: 20px; background-color: #64748B; flex-shrink: 0;"></div>
+                                    <span style="font-size: 14px; color: black; letter-spacing: 0.05em; text-transform: uppercase;">检测类</span>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                    <span style="background-color: #E2ECE2; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">支座出厂检测</span>
+                                    <span style="background-color: #E2ECE2; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">型式检验</span>
+                                    <span style="background-color: #E2ECE2; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">竖向/水平刚度</span>
+                                    <span style="background-color: #E2ECE2; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">阻尼比测定</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 适用对象 -->
+                            <div style="padding: 14px 20px; border-top: 1px solid var(--light-gray); display: flex; flex-wrap: wrap; gap: 10px; background-color: #E6F3E6; opacity: 0.9;">
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">橡胶隔振支座</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">摩擦摆支座</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">滚动摩擦支座</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">三维隔振装置</span>
+                            </div>
+                            
+                            <!-- 跳转链接行 -->
+                            <!-- <div style="padding: 12px 20px 16px; background-color: #F0F7F0; opacity: 0.9;">
+                                <a href="#papers" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block;">→ 查看相关论文与科研项目</a>
+                            </div> -->
+                        </div>
+                        
+                        <!-- 第三列：阻尼器试验 -->
+                        <div style="background-color: #F8F5F0; opacity: 0.85;">
+                            <!-- 列头 -->
+                            <div style="padding: 16px 20px; border-bottom: 1px solid var(--light-gray); background-color: #F0E6D8; opacity: 0.9; text-align: center;">
+                                <h4 style="font-size: 20px; font-weight: 500; margin: 0 0 6px 0; color: black;">阻尼器试验</h4>
+                                <p style="font-size: 12px; color: black; margin: 0;">减震装置加载检测平台</p>
+                            </div>
+                            
+                            <!-- 研究类区块 -->
+                            <div style="padding: 16px 20px; background-color: #FAF5F0; opacity: 0.9;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                    <div style="width: 3px; height: 20px; background-color: #94A3B8; flex-shrink: 0;"></div>
+                                    <span style="font-size: 14px; color: black; letter-spacing: 0.05em; text-transform: uppercase;">研究类</span>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                    <span style="background-color: #F0E6D8; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">滞回性能研究</span>
+                                    <span style="background-color: #F0E6D8; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">阻尼参数识别</span>
+                                    <span style="background-color: #F0E6D8; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">新型阻尼器研发</span>
+                                    <span style="background-color: #F0E6D8; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">耗能特性分析</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 检测类区块 -->
+                            <div style="padding: 16px 20px; background-color: #F8F5F0; opacity: 0.9;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                    <div style="width: 3px; height: 20px; background-color: #64748B; flex-shrink: 0;"></div>
+                                    <span style="font-size: 14px; color: black; letter-spacing: 0.05em; text-transform: uppercase;">检测类</span>
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                    <span style="background-color: #EDE0D0; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">出厂检测</span>
+                                    <span style="background-color: #EDE0D0; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">型式检验</span>
+                                    <span style="background-color: #EDE0D0; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">速度-阻尼力测试</span>
+                                    <span style="background-color: #EDE0D0; color: #1a1a1a; border: 1px solid #64748B; border-radius: 4px; padding: 4px 12px; font-size: 14px;">等效阻尼比测定</span>
+                                </div>
+                            </div>
+                            
+                            <!-- 适用对象 -->
+                            <div style="padding: 14px 20px; border-top: 1px solid var(--light-gray); display: flex; flex-wrap: wrap; gap: 10px; background-color: #F0E6D8; opacity: 0.9;">
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">粘弹性阻尼器</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">粘滞液体阻尼器</span>
+                                <span style="font-size: 13px; background-color: #CBD5E1; color: #1a1a1a; border: 1px solid #64748B; border-radius: 99px; padding: 4px 12px;">金属屈服阻尼器</span>
+                            </div>
+                            
+                            <!-- 跳转链接行 -->
+                            <!-- <div style="padding: 12px 20px 16px; background-color: #F8F5F0; opacity: 0.9;">
+                                <a href="#papers" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block;">→ 查看相关论文与科研项目</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 可折叠设备信息条 -->
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <!-- 左侧竖条 -->
+                        <div class="header-line"></div>
+                        
+                        <!-- 振动台图标 SVG -->
+                        <svg class="shaking-table-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 台面 -->
+                            <rect x="4" y="8" width="24" height="5" rx="1.5" fill="#2e80c8"/>
+                            <!-- 台面高光 -->
+                            <rect x="4" y="8" width="24" height="2" rx="1.5" fill="#5bb0f0" opacity="0.6"/>
+                            <!-- 作动器1（左） -->
+                            <rect x="7" y="13" width="3.5" height="8" rx="1" fill="#3a92d4"/>
+                            <rect x="7.5" y="21" width="2.5" height="3" rx="0.8" fill="#2e80c8"/>
+                            <!-- 作动器2（中左） -->
+                            <rect x="12.5" y="13" width="3.5" height="10" rx="1" fill="#3a92d4"/>
+                            <rect x="13" y="23" width="2.5" height="3" rx="0.8" fill="#2e80c8"/>
+                            <!-- 作动器3（中右） -->
+                            <rect x="18" y="13" width="3" height="7" rx="1" fill="#3a92d4"/>
+                            <rect x="18.2" y="20" width="2.5" height="3" rx="0.8" fill="#2e80c8"/>
+                            <!-- 作动器4（右） -->
+                            <rect x="22.5" y="13" width="3" height="9" rx="1" fill="#3a92d4"/>
+                            <rect x="22.7" y="22" width="2.5" height="3" rx="0.8" fill="#2e80c8"/>
+                            <!-- 底座 -->
+                            <rect x="3" y="26" width="26" height="2.5" rx="1" fill="#1a5f9a"/>
+                            <!-- 台面螺栓点 -->
+                            <circle cx="8" cy="10.5" r="1" fill="#a8d8f8"/>
+                            <circle cx="16" cy="10.5" r="1" fill="#a8d8f8"/>
+                            <circle cx="24" cy="10.5" r="1" fill="#a8d8f8"/>
+                        </svg>
+                        
+                        <span>点击查看：中国地震局工程力学研究所地震模拟振动台·设备参数与资质</span>
+                        
+                        <div class="header-right">
+                            <!-- CMA badge -->
+                            <div class="cma-badge">CMA认证</div>
+                            <!-- CNAS badge -->
+                            <div class="cma-badge">CNAS认证</div>
+                            
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        
+                        <!-- 第三个地震波 -->
+                        <div class="wave-third"></div>
+                        
+                        <div class="tech-circles"></div>
+                    </div>
+                    
+                    <!-- 设备图片展示区域 -->
+                    <div style="padding: 2rem; background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%); border-radius: 0 0 16px 16px; border: 1px solid #e3f2fd; border-top: none; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+                        <div style="text-align: center; flex: 1; min-width: 250px;">
+                            <img src="https://cdn.jsdelivr.net/gh/luobo0531/lijichao@main/images/shaking table.png" alt="地震模拟振动台" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                            <h4 style="color: #1a4a7a; font-weight: 600;">地震模拟振动台</h4>
+                        </div>
+                        <div style="text-align: center; flex: 1; min-width: 250px;">
+                            <img src="https://cdn.jsdelivr.net/gh/luobo0531/lijichao@main/images/devise1.png" alt="大吨位、高速度隔震空间加载检测平台" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                            <h4 style="color: #1a4a7a; font-weight: 600;">隔震空间加载检测平台</h4>
+                        </div>
+                        <div style="text-align: center; flex: 1; min-width: 250px;">
+                            <img src="https://cdn.jsdelivr.net/gh/luobo0531/lijichao@main/images/devise2.png" alt="大吨位、高速度减震装置加载检测平台" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                            <h4 style="color: #1a4a7a; font-weight: 600;">减震装置加载检测平台</h4>
+                        </div>
+                    </div>
+                    <div class="collapsible-content">
+                        <!-- 实验室介绍 -->
+                        <div class="shaking-table-overview">
+                            <h3>实验室介绍</h3>
+                            <p><strong>地震灾害防治应急管理部重点实验室 / 中国地震局地震工程与工程振动重点实验室</strong></p>
+                            <p>围绕应急管理与防灾减灾，瞄准国际地震科学技术前沿与国家重大战略需求，聚焦强震致灾机理、地震危险性分析与区划、城市地震灾害模拟、工程性态抗震理论与方法、工程灾害防治、重大地震灾情快速研判与应急决策等方向，融合工程监测、灾害模拟与韧性评价，提升地震灾害风险防御能力，支撑韧性城乡建设与现代城市地震巨灾风险管理。</p>
+                            <p><strong>试验设备简介</strong></p>
+                            <p>实验室配备三台地震模拟振动台，构成三台阵系统。大台台面5m×5m，承载30吨，固定布置；两台小台均为3.5m×3.5m，可移动，其中一台承载6吨、空载加速度可达7g，适用于核级设备等高加速度需求的试验；另一台承载20吨、支持竖向三向加载，适用于大质量结构与设备。三台阵可灵活组合，也可单独使用，实现多点激励与复杂地震动输入。</p>
+                            <p>两台大吨位高速度加载检测平台，分别用于隔震支座与减震阻尼器的力学性能测试，具备精确的控制性能，可满足各类隔震和减震装置的研究性试验与检测需求。</p>
+                            <div class="tech-badges">
+                                <span class="tech-badge cma">CMA认证</span>
+                                <span class="tech-badge cnas">CNAS认证</span>
+                                <span class="tech-badge">专业抗震试验</span>
+                                <span class="tech-badge">核级设备测试</span>
+                                <span class="tech-badge">大吨位加载</span>
+                                <span class="tech-badge">高速度测试</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 设备参数表格区 -->
+                        <div style="margin-bottom: 2rem;">
+                            <h5 style="font-size: 2rem; font-weight: 600; color: #1a4a7a; margin-bottom: 1.5rem; text-align: center;">设备参数表</h5>
+                            
+                            <!-- 振动台设备表 -->
+                            <div style="margin-bottom: 4rem;">
+                                <h6 style="font-size: 1.5rem; font-weight: 600; color: #1a4a7a; margin-bottom: 2rem;">地震模拟振动台</h6>
+                                
+                                <!-- 振动台网格 -->
+                                <div class="shaking-table-grid">
+                                    <!-- 大台 -->
+                                    <div class="shaking-table-card">
+                                        <div class="shaking-table-card-header">
+                                            <h3>三台阵-大台（固定）</h3>
+                                            <p>5m × 5m | 30吨 | 100 Hz | 三向六自由度</p>
+                                        </div>
+                                        <div class="shaking-table-card-body">
+
+                                            <table class="specs-table">
+                                                <tr>
+                                                    <th>项目</th>
+                                                    <th>参数</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>尺寸</td>
+                                                    <td>5m × 5m</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>承载能力</td>
+                                                    <td>30吨</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>加载方向</td>
+                                                    <td>三向六自由度</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>最大倾覆力矩</td>
+                                                    <td>80 t·m</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>频率范围</td>
+                                                    <td>0.1~100 Hz</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>波形</td>
+                                                    <td>正弦、随机、地震动</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大加速度</td>
+                                                    <td>2g</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大加速度</td>
+                                                    <td>1.5g</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大速度</td>
+                                                    <td>1.5 m/s</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大速度</td>
+                                                    <td>1.2 m/s</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大位移</td>
+                                                    <td>500 mm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大位移</td>
+                                                    <td>200 mm</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- 小台 -->
+                                    <div class="shaking-table-card">
+                                        <div class="shaking-table-card-header">
+                                            <h3>三台阵-小台1（移动）</h3>
+                                            <p>3.5m × 3.5m | 6吨 | 100 Hz | 三向六自由度</p>
+                                        </div>
+                                        <div class="shaking-table-card-body">
+
+                                            <table class="specs-table">
+                                                <tr>
+                                                    <th>项目</th>
+                                                    <th>参数</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>尺寸</td>
+                                                    <td>3.5m × 3.5m</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>承载能力</td>
+                                                    <td>6吨</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>加载方向</td>
+                                                    <td>三向六自由度</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>最大倾覆力矩</td>
+                                                    <td>40 t·m</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>频率范围</td>
+                                                    <td>0.1~100 Hz</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>波形</td>
+                                                    <td>正弦、随机、地震动</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大加速度</td>
+                                                    <td>4g（空载可达7g）</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大加速度</td>
+                                                    <td>3g</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大速度</td>
+                                                    <td>2.4 m/s</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大速度</td>
+                                                    <td>1.8 m/s</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大位移</td>
+                                                    <td>250 mm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大位移</td>
+                                                    <td>300 mm</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- 新小台 -->
+                                    <div class="shaking-table-card">
+                                        <div class="shaking-table-card-header">
+                                            <h3>三台阵-小台2（移动）</h3>
+                                            <p>3.5m × 3.5m | 20吨 | 50 Hz | 三向六自由度</p>
+                                        </div>
+                                        <div class="shaking-table-card-body">
+
+                                            <table class="specs-table">
+                                                <tr>
+                                                    <th>项目</th>
+                                                    <th>参数</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>尺寸</td>
+                                                    <td>3.5m × 3.5m</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>承载能力</td>
+                                                    <td>20吨</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>加载方向</td>
+                                                    <td>三向六自由度</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>最大倾覆力矩</td>
+                                                    <td>40 t·m</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>频率范围</td>
+                                                    <td>0.1~50 Hz</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>波形</td>
+                                                    <td>正弦、随机、地震动</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大加速度</td>
+                                                    <td>1.5g</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大加速度</td>
+                                                    <td>1.5g</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大速度</td>
+                                                    <td>1.0 m/s</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大速度</td>
+                                                    <td>0.9 m/s</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平向最大位移</td>
+                                                    <td>250 mm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>竖向最大位移</td>
+                                                    <td>200 mm</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 加载检测平台设备表 -->
+                            <div>
+                                <h6 style="font-size: 1.5rem; font-weight: 600; color: #1a4a7a; margin-bottom: 2rem;">大吨位加载检测平台</h6>
+                                
+                                <!-- 平台网格 -->
+                                <div class="loading-platforms-grid">
+                                    <!-- 隔震空间加载检测平台 -->
+                                    <div class="loading-platform-card">
+                                        <div class="loading-platform-card-header">
+                                            <h3>大吨位、高速度隔震空间加载检测平台</h3>
+                                            <p>三向加载系统 | 最大动态载荷4000kN</p>
+                                        </div>
+                                        <div class="loading-platform-card-body">
+
+                                            <table class="specs-table">
+                                                <tr>
+                                                    <th>项目</th>
+                                                    <th>参数</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>加载方向</td>
+                                                    <td>水平X向、水平Y向、垂向</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平X向和Y向最大动态载荷</td>
+                                                    <td>4000kN</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平X向和Y向最大加载行程</td>
+                                                    <td>±1000mm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>水平X向和Y向最大加载速率</td>
+                                                    <td>2m/s</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>垂向最大受压载荷</td>
+                                                    <td>40000kN</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>垂向最大受拉载荷</td>
+                                                    <td>20000kN</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>垂向最大加载行程</td>
+                                                    <td>800mm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作空间</td>
+                                                    <td>3m × 3m × 4m</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作频率</td>
+                                                    <td>0.001Hz ~ 5Hz</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 减震装置加载检测平台 -->
+                                    <div class="loading-platform-card">
+                                        <div class="loading-platform-card-header">
+                                            <h3>大吨位、高速度减震装置加载检测平台</h3>
+                                            <p>轴向加载系统 | 最大静态载荷10000kN</p>
+                                        </div>
+                                        <div class="loading-platform-card-body">
+
+                                            <table class="specs-table">
+                                                <tr>
+                                                    <th>项目</th>
+                                                    <th>参数</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>加载系统</td>
+                                                    <td>轴向加载系统</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>最大静态载荷</td>
+                                                    <td>10000kN</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>最大加载位移</td>
+                                                    <td>±150mm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>最大动态载荷</td>
+                                                    <td>4000kN</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>最大加载行程</td>
+                                                    <td>±1000mm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作空间</td>
+                                                    <td>16m × 2m × 3m</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工作频率</td>
+                                                    <td>0.1Hz ~ 10Hz</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 代表性工程案例 -->
+                <h4 data-lang="zh" style="margin-top: 2rem; margin-bottom: 1rem;">代表性工程案例</h4>
+                <h4 data-lang="en" style="display: none; margin-top: 2rem; margin-bottom: 1rem;">Representative Engineering Cases</h4>
+                
+                <!-- 项目列表 - 单列可折叠布局 -->
+                <div class="collapsible-project-list">
+                    <!-- 案例10 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">脉冲作用下隔震支座力学性能试验研究</div>
+                            <div class="project-meta">
+                                <span class="project-source">项目来源：中国建筑科学研究院有限公司</span>
+                                <span class="project-date">合同签订时间：2026年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 案例1 -->
+                     <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">组件抗震试验技术服务</div>
                             <div class="project-meta">
                                 <span class="project-source">项目来源：中国科学院力学研究所</span>
-                                <span class="project-date">合同签订时间：2019年</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>大环域相邻圆筒流固耦合试验</h4>
-                            <div class="project-meta">
-                                <span class="project-source">项目来源：华北电力大学</span>
-                                <span class="project-date">合同签订时间：2020年</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>KY1773课题-溶解器模型机地震模拟振动台试验研究外委项目</h4>
-                            <div class="project-meta">
-                                <span class="project-source">项目来源：中国核电工程有限公司</span>
-                                <span class="project-date">合同签订时间：2020年</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>组件抗震试验数据采集与分析</h4>
-                            <div class="project-meta">
-                                <span class="project-source">项目来源：中国科学院力学研究所</span>
-                                <span class="project-date">合同签订时间：2022年</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>不规则水箱乏池振动台试验</h4>
-                            <div class="project-meta">
-                                <span class="project-source">项目来源：华北电力大学</span>
-                                <span class="project-date">合同签订时间：2023年</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>乏燃料贮运吊篮补充抗震试验外委项目</h4>
-                            <div class="project-meta">
-                                <span class="project-source">项目来源：中国核电工程有限公司</span>
-                                <span class="project-date">合同签订时间：2023年</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>辐照考验组件抗震试验</h4>
-                            <div class="project-meta">
-                                <span class="project-source">项目来源：华北电力大学</span>
                                 <span class="project-date">合同签订时间：2025年</span>
                             </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>考虑流-固耦合效应的格架抗震试验</h4>
+                                        
+                    <!-- 案例2 -->
+                     <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">考虑流-固耦合效应的格架抗震试验</div>
                             <div class="project-meta">
                                 <span class="project-source">项目来源：靖江宏源重工科技有限公司</span>
                                 <span class="project-date">合同签订时间：2025年</span>
                             </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>组件抗震试验技术服务</h4>
+                    <!-- 案例3 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">辐照考验组件抗震试验</div>
                             <div class="project-meta">
-                                <span class="project-source">项目来源：中国科学院力学研究所</span>
+                                <span class="project-source">项目来源：华北电力大学</span>
                                 <span class="project-date">合同签订时间：2025年</span>
                             </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="project-item">
-                        <div class="project-info">
-                            <h4>脉冲作用下隔震支座力学性能试验研究</h4>
+                    <!-- 案例4 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">乏燃料贮运吊篮补充抗震试验外委项目</div>
                             <div class="project-meta">
-                                <span class="project-source">项目来源：中国建筑科学研究院有限公司</span>
+                                <span class="project-source">项目来源：中国核电工程有限公司</span>
+                                <span class="project-date">合同签订时间：2023年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- 案例5 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">不规则水箱乏池振动台试验</div>
+                            <div class="project-meta">
+                                <span class="project-source">项目来源：华北电力大学</span>
+                                <span class="project-date">合同签订时间：2023年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 案例6 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">组件抗震试验数据采集与分析</div>
+                            <div class="project-meta">
+                                <span class="project-source">项目来源：中国科学院力学研究所</span>
+                                <span class="project-date">合同签订时间：2022年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 案例7 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">KY1773课题-溶解器模型机地震模拟振动台试验研究外委项目</div>
+                            <div class="project-meta">
+                                <span class="project-source">项目来源：中国核电工程有限公司</span>
+                                <span class="project-date">合同签订时间：2020年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 案例8 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">大环域相邻圆筒流固耦合试验</div>
+                            <div class="project-meta">
+                                <span class="project-source">项目来源：华北电力大学</span>
+                                <span class="project-date">合同签订时间：2020年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
+                        </div>
+                    </div>
+                                        
+                    <!-- 案例9 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">堆芯柱群组件振动台试验研究</div>
+                            <div class="project-meta">
+                                <span class="project-source">项目来源：中国科学院力学研究所</span>
+                                <span class="project-date">合同签订时间：2019年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
+                        </div>
+                    </div>                    
+                    
+                    <!-- 案例11 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">特高压换流站电气设备地震模拟振动台试验与平波电抗器支柱绝缘子抗弯试验</div>
+                            <div class="project-meta">
+                                <span class="project-source">项目来源：中国电力科学研究院</span>
+                                <span class="project-date">合同签订时间：2017年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 案例12 -->
+                    <div class="collapsible-project-item">
+                        <div class="collapsible-project-header">
+                            <div class="project-title">互感器地震模拟试验</div>
+                            <div class="project-meta">
+                                <span class="project-source">项目来源：大连阿塔其大互电器有限公司</span>
+                                <span class="project-date">合同签订时间：2017年</span>
+                            </div>
+                            <span class="collapsible-icon">▼</span>
+                        </div>
+                        <div class="collapsible-project-content">
+                            <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                <p>项目详情：待补充。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 仿真·分析·易损性 -->
+                <div id="simulation" style="margin-top: 4rem;">
+                    <h3 data-lang="zh">仿真·分析·易损性</h3>
+                    <h3 data-lang="en" style="display: none;">Simulation · Analysis · Vulnerability</h3>
+                    
+                    <!-- 顶部一句话 -->
+                    <div style="background-color: var(--light-color); border-left: 3px solid var(--primary-color); padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                        <p style="font-size: 16px; color: var(--dark-color); margin: 0; flex: 1;">基于有限元软件与概率方法，提供数值模拟、减隔震设计及地震易损性分析服务。</p>
+                    </div>
+                    
+                    <!-- 三列简介表格 -->
+                    <div style="border: 0.5px solid var(--light-gray); border-radius: 10px; overflow: hidden; margin-bottom: 2rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;">
+                            <!-- 第一列：数值模拟 -->
+                            <div style="border-right: 1px solid var(--light-gray); background-color: #F0F4F8; opacity: 0.85;">
+                                <!-- 列头 -->
+                                <div style="padding: 16px 20px; border-bottom: 1px solid var(--light-gray); background-color: #E6EEF5; opacity: 0.9; text-align: center;">
+                                    <h4 style="font-size: 20px; font-weight: 500; margin: 0 0 6px 0; color: black;">数值模拟</h4>
+                                    <p style="font-size: 16px; color: black; margin: 0;">Abaqus · SAP2000 · ETABS</p>
+                                </div>
+                                
+                                <!-- 内容块 -->
+                                <div style="padding: 16px 20px; background-color: #F5F9FC; opacity: 0.9;">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">建筑结构时程分析</span>
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">电气设备动力响应</span>
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">核电设备流固耦合</span>
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">管道系统响应模拟</span>
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">减隔震参数优化</span>
+                                    </div>
+                                    
+                                    <!-- 跳转链接行 -->
+                                    <!-- <div style="padding: 12px 0 0;">
+                                        <a href="#papers" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block;">→ 查看相关论文与科研项目</a>
+                                    </div> -->
+                                </div>
+                            </div>
+                            
+                            <!-- 第二列：减隔震设计 -->
+                            <div style="border-right: 1px solid var(--light-gray); background-color: #F0F7F0; opacity: 0.85;">
+                                <!-- 列头 -->
+                                <div style="padding: 16px 20px; border-bottom: 1px solid var(--light-gray); background-color: #E6F3E6; opacity: 0.9; text-align: center;">
+                                    <h4 style="font-size: 20px; font-weight: 500; margin: 0 0 6px 0; color: black;">减隔震设计</h4>
+                                    <p style="font-size: 16px; color: black; margin: 0;">方案设计与复核</p>
+                                </div>
+                                
+                                <!-- 内容块 -->
+                                <div style="padding: 16px 20px; background-color: #F5FAF5; opacity: 0.9;">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">建筑结构隔震方案</span>
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">设备隔振方案设计</span>
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">支座选型与参数设计</span>
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">隔震效果评估</span>
+                                    </div>
+                                    
+                                    <!-- 跳转链接行 -->
+                                    <!-- <div style="padding: 12px 0 0;">
+                                        <a href="#papers" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block;">→ 查看相关论文与科研项目</a>
+                                    </div> -->
+                                </div>
+                            </div>
+                            
+                            <!-- 第三列：地震易损性分析 -->
+                            <div style="background-color: #F0F8F8; opacity: 0.85;">
+                                <!-- 列头 -->
+                                <div style="padding: 16px 20px; border-bottom: 1px solid var(--light-gray); background-color: #E6F7F7; opacity: 0.9; text-align: center;">
+                                    <h4 style="font-size: 20px; font-weight: 500; margin: 0 0 6px 0; color: black;">地震易损性分析</h4>
+                                    <p style="font-size: 16px; color: black; margin: 0;">概率损伤模型</p>
+                                </div>
+                                
+                                <!-- 内容块 -->
+                                <div style="padding: 16px 20px; background-color: #F5FCFC; opacity: 0.9;">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                                        <span style="background-color: #E6F7F7; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">易损性曲线建立</span>
+                                        <span style="background-color: #E6F7F7; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">变电站电气设备</span>
+                                        <span style="background-color: #E6F7F7; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">建筑非结构构件</span>
+                                        <span style="background-color: #E6F7F7; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">工业设施评估</span>
+                                        <span style="background-color: #E6F7F7; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">基于试验数据建模</span>
+                                    </div>
+                                    
+                                    <!-- 跳转链接行 -->
+                                    <!-- <div style="padding: 12px 0 0;">
+                                        <a href="#papers" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block;">→ 查看相关论文与科研项目</a>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 代表性工程案例 -->
+                    <h4 data-lang="zh" style="margin-top: 2rem; margin-bottom: 1rem;">代表性工程案例</h4>
+                    <h4 data-lang="en" style="display: none; margin-top: 2rem; margin-bottom: 1rem;">Representative Engineering Cases</h4>
+                    
+                    <!-- 项目列表 - 单列可折叠布局 -->
+                    <div class="collapsible-project-list">
+                        <!-- 案例1：减震隔振设计案例 -->
+                        <div class="collapsible-project-item">
+                            <div class="collapsible-project-header">
+                                <div class="project-title">核电站厂房楼层响应谱开发和构筑物、设备的抗震能力分析服务</div>
+                                <div class="project-meta">
+                                    <span class="project-source">项目来源：中广核苏州热工研究院有限公司</span>
+                                    <span class="project-date">合同签订时间：2018年</span>
+                                </div>
+                                <span class="collapsible-icon">▼</span>
+                            </div>
+                            <div class="collapsible-project-content">
+                                <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                    <p>项目详情：待补充。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 案例2：易损性分析案例 -->
+                        <div class="collapsible-project-item">
+                            <div class="collapsible-project-header">
+                                <div class="project-title">溶解器模型机抗震性能计算分析与结构优化</div>
+                                <div class="project-meta">
+                                    <span class="project-source">项目来源：中国核电工程有限公司</span>
+                                    <span class="project-date">合同签订时间：2020年</span>
+                                </div>
+                                <span class="collapsible-icon">▼</span>
+                            </div>
+                            <div class="collapsible-project-content">
+                                <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                    <p>项目详情：待补充。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 案例3：ETABS建筑结构分析 -->
+                        <div class="collapsible-project-item">
+                            <div class="collapsible-project-header">
+                                <div class="project-title">河北省唐山市丰南区中医院隔震设计</div>
+                                <div class="project-meta">
+                                    <span class="project-source">项目来源：华诚博远工程技术集团有限公司</span>
+                                    <span class="project-date">合同签订时间：2017年</span>
+                                </div>
+                                <span class="collapsible-icon">▼</span>
+                            </div>
+                            <div class="collapsible-project-content">
+                                <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-top: 0.5rem;">
+                                    <p>项目详情：待补充。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 韧性评价 -->
+                <div id="resilience" style="margin-top: 4rem;">
+                    <h3 data-lang="zh">韧性评价</h3>
+                    <h3 data-lang="en" style="display: none;">Resilience Assessment</h3>
+                    
+                    <!-- 顶部一句话 -->
+                    <div style="background-color: var(--light-color); border-left: 3px solid var(--primary-color); padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                        <p style="font-size: 16px; color: var(--dark-color); margin: 0; flex: 1;">面向电力系统与城市供水管网，提供地震后功能损失评估与韧性提升方案。</p>
+                    </div>
+                    
+                    <!-- 两列简介表格 -->
+                    <div style="border: 0.5px solid var(--light-gray); border-radius: 10px; overflow: hidden; margin-bottom: 2rem;">
+                        <div style="display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0;">
+                            <!-- 第一列：电力系统韧性评价 -->
+                            <div style="border-right: 1px solid var(--light-gray); background-color: #F0F4F8; opacity: 0.85;">
+                                <!-- 列头 -->
+                                <div style="padding: 16px 20px; border-bottom: 1px solid var(--light-gray); background-color: #E6EEF5; opacity: 0.9; text-align: center;">
+                                    <h4 style="font-size: 20px; font-weight: 500; margin: 0 0 6px 0; color: black;">电力系统韧性评价</h4>
+                                    <p style="font-size: 16px; color: black; margin: 0;">变电站 · 城市电力网络</p>
+                                </div>
+                                
+                                <!-- 内容块 -->
+                                <div style="padding: 16px 20px; background-color: #F5F9FC; opacity: 0.9;">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">变电站功能损失评估</span>
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">抗震冗余性分析</span>
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">震致级联失效分析</span>
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">震后功能恢复模拟</span>
+                                        <span style="background-color: #E6EEF5; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">韧性提升方案制定</span>
+                                    </div>
+                                    
+                                    <!-- 跳转链接行 -->
+                                    <!-- <div style="padding: 12px 0 0;">
+                                        <a href="#papers" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block; margin-right: 1rem;">→ 查看相关论文与科研项目</a>
+                                        <a href="#software" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block;">→ 查看相关分析软件</a>
+                                    </div> -->
+                                </div>
+                            </div>
+                            
+                            <!-- 第二列：供水管网韧性评价 -->
+                            <div style="background-color: #F0F7F0; opacity: 0.85;">
+                                <!-- 列头 -->
+                                <div style="padding: 16px 20px; border-bottom: 1px solid var(--light-gray); background-color: #E6F3E6; opacity: 0.9; text-align: center;">
+                                    <h4 style="font-size: 20px; font-weight: 500; margin: 0 0 6px 0; color: black;">供水管网韧性评价</h4>
+                                    <p style="font-size: 16px; color: black; margin: 0;">城市供水系统</p>
+                                </div>
+                                
+                                <!-- 内容块 -->
+                                <div style="padding: 16px 20px; background-color: #F5FAF5; opacity: 0.9;">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">震后水力功能分析</span>
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">管网拓扑脆弱性识别</span>
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">韧性定量评估</span>
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">震后恢复路径优化</span>
+                                        <span style="background-color: #E6F3E6; color: #1a1a1a; border: 1px solid #94A3B8; border-radius: 4px; padding: 4px 12px; font-size: 14px;">韧性提升方案制定</span>
+                                    </div>
+                                    
+                                    <!-- 跳转链接行 -->
+                                    <!-- <div style="padding: 12px 0 0;">
+                                        <a href="#papers" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block; margin-right: 1rem;">→ 查看相关论文与科研项目</a>
+                                        <a href="#software" style="font-size: 14px; color: black; text-decoration: none; border-bottom: 1px dashed black; display: inline-block;">→ 查看相关分析软件</a>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    
+                    <!-- 相关成果 -->
+                    <h4 data-lang="zh" style="margin-top: 2rem; margin-bottom: 1rem;">相关成果</h4>
+                    <h4 data-lang="en" style="display: none; margin-top: 2rem; margin-bottom: 1rem;">Related Achievements</h4>
+                    
+                    <div style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 8px; margin-bottom: 2rem;">
+                        <p style="margin-bottom: 1rem;">两个方向均有系统性科研积累，并已开发配套分析软件：</p>
+                        <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                            <li>220kV变电站系统抗震韧性分析软件</li>
+                            <li>供水管网抗震韧性分析软件</li>
+                        </ul>
+                        <p><a href="#software" style="color: var(--primary-color); text-decoration: none; border-bottom: 1px dashed var(--primary-color);">→ 在软件Newmark查看详情与下载</a></p>
                     </div>
                 </div>
             </div>
@@ -948,13 +2346,13 @@
     <section id="software" class="software-store">
         <div class="container">
             <h2 data-lang="zh">软件Newmark</h2>
-            <p class="section-description" data-lang="zh">我们开发的专业工具箱，为工程实践和科学研究提供高效解决方案</p>
+            <p class="section-description" data-lang="zh">整理中……</p>
             
             <!-- 软件产品列表 -->
             <div class="software-list">
 
 
-                <!-- 专家自研系列 -->
+                <!-- 自研系列 -->
                 <div class="software-item">
                     <div class="software-header">
                         <div class="software-icon">
@@ -964,7 +2362,6 @@
                             <h3 data-lang="zh">动力实验数据处理工具</h3>
                             <h3 data-lang="en" style="display: none;">Dynamic Experimental Data Processing Tool</h3>
                             <div class="software-tags">
-                                <span class="tag" data-lang="zh">专家自研</span>
                                 <span class="tag" data-lang="zh">数据处理</span>
                                 <span class="tag" data-lang="en" style="display: none;">Expert Developed</span>
                                 <span class="tag" data-lang="en" style="display: none;">Data Processing</span>
@@ -1002,7 +2399,6 @@
                             <h3 data-lang="zh">人工波/反应谱生成器</h3>
                             <h3 data-lang="en" style="display: none;">Artificial Wave/Response Spectrum Generator</h3>
                             <div class="software-tags">
-                                <span class="tag" data-lang="zh">专家自研</span>
                                 <span class="tag" data-lang="zh">反应谱计算</span>
                                 <span class="tag" data-lang="en" style="display: none;">Expert Developed</span>
                                 <span class="tag" data-lang="en" style="display: none;">Response Spectrum Calculation</span>
@@ -1040,7 +2436,6 @@
                             <h3 data-lang="zh">供水管网地震脆弱性分析软件</h3>
                             <h3 data-lang="en" style="display: none;">Water Supply Network Seismic Vulnerability Analysis Software</h3>
                             <div class="software-tags">
-                                <span class="tag" data-lang="zh">专家自研</span>
                                 <span class="tag" data-lang="zh">脆弱性分析</span>
                                 <span class="tag" data-lang="en" style="display: none;">Expert Developed</span>
                                 <span class="tag" data-lang="en" style="display: none;">Vulnerability Analysis</span>
@@ -1078,7 +2473,6 @@
                             <h3 data-lang="zh">变电站结构地震响应分析平台</h3>
                             <h3 data-lang="en" style="display: none;">Substation Structure Seismic Response Analysis Platform</h3>
                             <div class="software-tags">
-                                <span class="tag" data-lang="zh">专家自研</span>
                                 <span class="tag" data-lang="zh">地震响应分析</span>
                                 <span class="tag" data-lang="en" style="display: none;">Expert Developed</span>
                                 <span class="tag" data-lang="en" style="display: none;">Seismic Response Analysis</span>
@@ -1110,10 +2504,10 @@
         </div>
     </section>
 
-    <!-- 萝卜Claw的数字玩具板块 -->
+    <!-- 萝卜Claw专区板块 -->
     <section id="toys" class="toys-section">
         <div class="container">
-            <h2 data-lang="zh">萝卜Claw的数字玩具</h2>
+            <h2 data-lang="zh">萝卜Claw专区</h2>
             <p class="section-description" data-lang="zh">萝卜claw，深度思考！</p>
             
             <!-- 萝卜Claw人物介绍 -->
@@ -1124,15 +2518,9 @@
                     <div class="radish-intro-text">
                         <h3 class="cute-title">谁是萝卜Claw？</h3>
                         <p>
-                            本站的 idea 提出者、设计者与开发者。李吉超家属，碳基智能体——萝卜Claw。
+                            本站的 idea 提出者、设计者与开发者，碳基智能体——萝卜Claw。土木结构专业，抗震试验转行结构设计转行产品经理转行独立开发。
                         </p>
-                        <p>
-                            土木结构专业，抗震试验转行结构设计转行产品经理转行独立开发。
-                        </p>
-                        <p>
-                            工程结构动力分析软件，有限元仿真软件二次开发，吃喝玩乐小软件。
-                        </p>
-
+                        
                         <div class="radish-tags">
                             <span># 碳基智能体</span>
                             <span># 大模型玩家</span>
@@ -1255,7 +2643,7 @@
             <div class="software-item featured">
                 <div class="software-header">
                     <div class="software-icon">
-                        <img src="images/windlogo.png" alt="风电混塔建模系统">
+                        <img src="https://cdn.jsdelivr.net/gh/luobo0531/lijichao@main/images/windlogo.png" alt="风电混塔建模系统">
                     </div>
                     <div class="software-info">
                         <h3 data-lang="zh">智绘风塔 · 装配式风电混塔参数化建模软件 · WindTowerPro</h3>
@@ -1269,18 +2657,19 @@
                 </div>
                 <div class="software-content">
                     <div class="software-demo">
-                        <img src="images/windtower.png" alt="软件演示">
+                        <img src="https://cdn.jsdelivr.net/gh/luobo0531/lijichao@main/images/windtower.png" alt="软件演示">
                     </div>
                     <div class="software-description">
-                        <div class="software-intro">
-                            <p>使用WindTowerPro，参数化建模5分钟，代替手动建模3天工作量！输入参数，一键生成可直接导入 Abaqus 的风电混塔有限元模型。</p>
+                        <div class="software-intro" style="border: 2px solid #2980B9; border-radius: 12px; padding: 1.2rem; background: linear-gradient(135deg, #F8FAFF 0%, #E6F0FF 100%); box-shadow: 0 4px 12px rgba(41, 128, 185, 0.15); margin-bottom: 1.5rem;">
+                            <p style="font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #2980B9; font-weight: bold; line-height: 1.5; margin: 0;">5分钟生成混塔有限元模型，替代3天手动建模！</p>
+                            <p style="font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #2980B9; font-weight: bold; line-height: 1.5; margin: 0; font-size: 0.85em;">一键导入Abaqus，工程级自动化建模</p>
                         </div>
                         <h4 data-lang="zh">核心功能</h4>
                         <ul>
-                            <li data-lang="zh">全参数几何驱动：基于塔筒层高、层数及管片坐标，快速生成复杂几何模型。</li>
-                            <li data-lang="zh">一键式钢筋网络生成：基于箍筋和纵筋数量、直径及保护层参数，快速布置复杂钢筋网。</li>
-                            <li data-lang="zh">智能网格与材料一体化：内置网格种子控制，自定义混凝土与钢筋材料属性</li>
-                            <li data-lang="zh">高效Abaqus Python脚本：脚本导入即刻建模，得到高质量的有限元分析模型。</li>
+                            <li data-lang="zh"><strong>全参数几何驱动：</strong>基于塔筒层高、层数及管片坐标，快速生成复杂几何模型。</li>
+                            <li data-lang="zh"><strong>一键式钢筋网络生成：</strong>基于箍筋和纵筋数量、直径及保护层参数，快速布置复杂钢筋网。</li>
+                            <li data-lang="zh"><strong>智能网格与材料一体化：</strong>内置网格种子控制，自定义混凝土与钢筋材料属性</li>
+                            <li data-lang="zh"><strong>高效Abaqus Python脚本：</strong>脚本导入即刻建模，得到高质量的有限元分析模型。</li>
                         </ul>
                         <div class="info-card green-card">
                             <p><strong>持续更新计划：</strong>v1.0已上线，后续版本将陆续增加新功能，欢迎关注更新动态。</p>
@@ -1291,27 +2680,32 @@
                         <div class="software-info-section">
                             <div class="service-grid">
                                 <div class="service-left">
-                                    <div class="info-card yellow-card">
-                                        <h4><strong>个人用户咨询服务：</strong>可提供 Abaqus 建模脚本定制咨询，交付物为 Python 脚本文件，用户需自行在 Abaqus 授权环境下运行。</h4>
+                                    <div class="info-card yellow-card" style="margin-bottom: 0; padding: 0.8rem;">
+                                        <h4 style="margin: 0;"><strong>个人用户咨询服务：</strong>可提供 Abaqus 建模脚本定制咨询，交付物为 Python 脚本文件，用户需自行在 Abaqus 授权环境下运行。</h4>
                                     </div>
-                                    <div class="info-card orange-card">
-                                        <h4><strong>企业用户定制开发：</strong>支持在现有软件基础上进行功能定制开发。定制合作可包含永久授权（10个本地 license 或网络 IP 授权），亦支持合作分成模式。如有合作意向，请联系洽谈。</h4>
+                                    <div class="info-card orange-card" style="margin-bottom: 0; padding: 0.8rem;">
+                                        <h4 style="margin: 0;"><strong>企业用户定制开发：</strong>支持在现有软件基础上进行功能定制开发。定制合作可包含永久授权，亦支持合作分成模式。如有合作意向，请联系洽谈。</h4>
                                     </div>
                                 </div>
                                 <div class="service-right">
-                                    <div class="info-card gray-card">
-                                        <h4>授权及联系方式</h4>
-                                        <p><strong>微信号:</strong> <a href="#" style="color: #1565C0;">lqy920531</a></p>
-                                        <p>加微信备注「风塔软件」，可申请单次授权试用</p>
-                                        <p><strong>邮箱:</strong> <a href="mailto:13661168172@163.com" style="color: #1565C0;">13661168172@163.com</a></p>
-                                        <p>功能建议、企业合作、学术交流均可</p>
+                                    <div class="info-card" style="background-color: #FFE4E1; border-left: 4px solid #FFB6C1; padding: 0.8rem;">
+                                        <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                            <h4 style="font-weight: bold; color: #333; margin: 0; flex: 1; font-size: 1rem;">授权及联系方式</h4>
+                                            <img src="https://cdn.jsdelivr.net/gh/luobo0531/lijichao@main/images/WeChatluobo.jpg" alt="微信二维码" style="height: 52px; width: auto; margin-left: 1rem; border: 2px solid #FFB6C1; border-radius: 8px; padding: 3px; background: #FFE4E1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"/>
+                                        </div>
+                                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.3rem;">
+                                            <p style="margin: 0; font-size: 0.9rem;"><strong>微信号:</strong> <a href="#" style="color: #1565C0;">lqy920531</a></p>
+                                            <p style="margin: 0; font-size: 0.9rem;"><strong>邮箱:</strong> <a href="mailto:13661168172@163.com" style="color: #1565C0;">13661168172@163.com</a></p>
+                                        </div>
+                                        <p style="margin: 0.3rem 0; font-size: 0.85rem;">加微信备注「风电」，可申请单次授权试用</p>
+                                        <p style="margin: 0.3rem 0; font-size: 0.85rem;">功能建议、企业合作、定制开发均可</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="software-actions">
                             <div class="popup-wrap">
-                              <button class="btn primary pricing-btn">
+                              <button class="btn" style="background-color: #C7CEEA; color: #333333; border: none; border-radius: 8px; padding: 0.8rem 1.8rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 180px; text-align: center;">
                                 软件授权价格
                               </button>
 
@@ -1333,24 +2727,25 @@
                                   <!-- 两列表格 -->
                                   <div class="two-col">
                                     <div class="col-block">
-                                      <p class="col-title">按次购买（永久有效）</p>
+                                      <p class="col-title"><strong>按次购买（永久有效）</strong></p>
                                       <table>
                                         <thead><tr><th>套餐</th><th>总价</th><th>单次均价</th></tr></thead>
                                         <tbody>
-                                          <tr><td>1 次</td><td>¥299</td><td style="color:var(--gray-color)">¥299</td></tr>
-                                          <tr class="hl"><td>3 次 <span class="badge">推荐</span></td><td>¥699</td><td style="color:var(--gray-color)">¥233</td></tr>
-                                          <tr><td>10 次</td><td>¥1,599</td><td style="color:var(--gray-color)">¥160</td></tr>
+                                          <tr><td>10 次</td><td>¥299</td><td style="color:var(--gray-color)">¥29.9</td></tr>
+                                          <tr class="hl"><td>20 次 <span class="badge">推荐</span></td><td>¥699</td><td style="color:var(--gray-color)">¥34.95</td></tr>
+                                          <tr><td>30 次</td><td>¥1,599</td><td style="color:var(--gray-color)">¥53.3</td></tr>
                                         </tbody>
                                       </table>
                                     </div>
                                     <div class="col-block">
-                                      <p class="col-title">按时间订阅（不限次数）</p>
+                                      <p class="col-title"><strong>按时间订阅（不限次数）</strong></p>
                                       <table>
                                         <thead><tr><th>套餐</th><th>总价</th><th>月均费用</th></tr></thead>
                                         <tbody>
-                                          <tr><td>1 个月</td><td>¥599</td><td style="color:var(--gray-color)">¥599</td></tr>
+                                          <tr><td>1 星期</td><td>¥199</td><td style="color:var(--gray-color)">¥796</td></tr>
+										  <tr class="hl"><td>1 个月 <span class="badge-g badge">推荐</span></td><td>¥599</td><td style="color:var(--gray-color)">¥599</td></tr>
                                           <tr><td>3 个月</td><td>¥1,299</td><td style="color:var(--gray-color)">¥433</td></tr>
-                                          <tr class="hl"><td>1 年 <span class="badge-g badge">最划算</span></td><td>¥3,599</td><td style="color:var(--gray-color)">¥300</td></tr>
+										  <tr><td>1 年</td><td>¥2,999</td><td style="color:var(--gray-color)">¥250</td></tr>
                                         </tbody>
                                       </table>
                                     </div>
@@ -1360,8 +2755,8 @@
                                   <div class="lifetime">
                                     <div class="lifetime-top">
                                       <div>
-                                        <div class="lifetime-price">¥9,999 <span>一次付清</span></div>
-                                        <div class="lifetime-sub">永久有效 · 不限次数</div>
+                                        <div class="lifetime-price">¥3,999 <span>现在购买，锁定最低价！</span></div>
+                                        <div class="lifetime-sub">永久有效 · 不限次数 · 早期用户专属价格（后续将上涨）</div>
                                       </div>
                                       <span class="lifetime-badge">永久授权</span>
                                     </div>
@@ -1370,6 +2765,7 @@
                                       <div class="lf-item">无任何使用次数限制，随用随开</div>
                                       <div class="lf-item">授权永不过期，一次投入长期使用</div>
                                       <div class="lf-item">适合长期深度使用，综合成本最低</div>
+									  <div class="lf-item">含基础技术支持</div>
                                     </div>
                                   </div>
 
@@ -1385,13 +2781,13 @@
                                     </div>
                                     <span class="section-label">企业 / 批量采购</span>
                                   </div>
-                                  <p class="section-sub">含技术支持、上门培训及正规开票服务，可签订采购合同。</p>
+                                  <p class="section-sub">含技术支持、培训及正规开票服务，可签订采购合同。</p>
 
                                   <div class="ent-grid">
                                     <div class="ent-card">
                                       <div class="ent-card-label">多席位授权</div>
                                       <div class="ent-card-price">¥9,999 <span class="unit">/ 年</span></div>
-                                      <div class="ent-card-desc">3 席位 · 含基础技术支持 · 支持开票</div>
+                                      <div class="ent-card-desc">5 席位 · 含基础技术支持 · 支持开票</div>
                                     </div>
                                     <div class="ent-card">
                                       <div class="ent-card-label">网络 IP 授权</div>
@@ -1407,15 +2803,19 @@
 
                                 </div>
                                 <div class="popup-footer">
-                                  <span class="footer-tip">所有价格含税 · 支持对公转账</span>
-                                  <span class="footer-link">联系我们获取报价 →</span>
+                                  <span class="footer-tip">所有价格含税 · 企业订购支持对公转账</span>
+                                  <span class="footer-link">添加微信获取报价</span>
                                 </div>
                               </div>
                             </div>
-                            <a href="https://github.com/luobo0531/lijichao/releases/download/v1.0/WindTowerPro.zip" class="btn outline" data-lang="zh" target="_blank">免费下载试用版</a>
-                            <a href="https://bilibili.com" class="btn bilibili" target="_blank"><span class="play-icon">▶</span> 观看软件演示视频</a>
+                            <a href="https://github.com/luobo0531/lijichao/releases/download/v1.0/WindTowerPro.zip" style="background-color: #B5EAD7; color: #333333; border: none; border-radius: 8px; padding: 0.8rem 1.8rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; min-width: 180px; text-align: center;" data-lang="zh" target="_blank">免费下载试用版</a>
+                            <a href="https://bilibili.com" style="background-color: #FFDAC1; color: #333333; border: none; border-radius: 8px; padding: 0.8rem 1.8rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; min-width: 180px; text-align: center;" target="_blank"><span class="play-icon">▶</span> 观看软件演示视频</a>
                         </div>
-                        <p class="software-note">试用版加开发者微信获取单次授权激活，体验完整功能</p>
+                        <div style="margin-top: 0.5rem; padding: 0.8rem; background-color: #f5f5f5; border-radius: 8px; font-size: 0.85rem; line-height: 1.4;">
+                            <h5 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1rem; font-weight: 600;">免责声明 Disclaimer</h5>
+                            <p style="margin: 0 0 0.5rem 0;">本软件为萝卜claw独立开发的参数化建模工具，与Dassault Systèmes公司无任何官方关联（Abaqus为Dassault Systèmes的注册商标）。</p>
+                            <p style="margin: 0;">本软件独立运行，无需在当前计算机安装Abaqus即可正常使用，亦不依赖任何Abaqus组件，运行后仅生成标准Python脚本文件（.py）。用户如需在Abaqus中运行该脚本以构建模型，须自行持有合法的Abaqus使用授权。</p>
+                        </div>
                     </div>
             </div>
             
@@ -1518,7 +2918,7 @@
                         <li><a href="#academic" data-lang="zh">科研Newmark</a></li>
                         <li><a href="#engineering" data-lang="zh">工程Newmark</a></li>
                         <li><a href="#software" data-lang="zh">软件Newmark</a></li>
-                        <li><a href="#toys" data-lang="zh">萝卜Claw的数字玩具</a></li>
+                        <li><a href="#toys" data-lang="zh">萝卜Claw专区</a></li>
                         <li><a href="#misc" data-lang="zh">神神叨叨的大裁缝</a></li>
                     </ul>
                 </div>
@@ -1533,7 +2933,7 @@
     <!-- 回到顶部按钮 -->
     <button class="back-to-top" id="backToTop">↑</button>
 
-
+    
 
     <script src="script.js"></script>
 </body>
