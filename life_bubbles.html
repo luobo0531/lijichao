@@ -1,0 +1,100 @@
+
+<style>
+.bubble-wrap{position:relative;width:100%;height:320px;overflow:hidden;border-radius:12px;}
+.bubble{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:default;user-select:none;}
+.bubble span.label{font-size:11px;font-weight:500;text-align:center;line-height:1.3;position:relative;z-index:1;}
+.bubble span.pct{font-size:10px;opacity:0.75;position:relative;z-index:1;}
+</style>
+
+<div class="bubble-wrap" id="bw">
+<canvas id="bc" style="position:absolute;top:0;left:0;width:100%;height:100%;"></canvas>
+</div>
+
+<script>
+const data = [
+  {label:'科研', pct:28, color:'rgba(56,130,221,', r:64},
+  {label:'横向', pct:18, color:'rgba(29,158,117,', r:52},
+  {label:'带学生', pct:12, color:'rgba(127,119,221,', r:44},
+  {label:'写软件', pct:10, color:'rgba(216,90,48,', r:40},
+  {label:'健身', pct:8, color:'rgba(186,117,23,', r:36},
+  {label:'炒股', pct:7, color:'rgba(212,83,126,', r:34},
+  {label:'开会', pct:9, color:'rgba(100,180,200,', r:38},
+  {label:'摸鱼', pct:8, color:'rgba(160,90,200,', r:36},
+];
+
+const wrap = document.getElementById('bw');
+const canvas = document.getElementById('bc');
+
+function init(){
+  const W = wrap.offsetWidth;
+  const H = wrap.offsetHeight;
+  canvas.width = W * devicePixelRatio;
+  canvas.height = H * devicePixelRatio;
+  canvas.style.width = W+'px';
+  canvas.style.height = H+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  const bubbles = data.map((d,i)=>{
+    const r = d.r;
+    const x = r + Math.random()*(W - r*2);
+    const y = r + Math.random()*(H - r*2);
+    const vx = (Math.random()-0.5)*0.4;
+    const vy = (Math.random()-0.5)*0.4;
+    return {...d, x, y, vx, vy, r, W, H};
+  });
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    bubbles.forEach(b=>{
+      b.x += b.vx;
+      b.y += b.vy;
+      if(b.x - b.r < 0){b.x = b.r; b.vx *= -1;}
+      if(b.x + b.r > W){b.x = W - b.r; b.vx *= -1;}
+      if(b.y - b.r < 0){b.y = b.r; b.vy *= -1;}
+      if(b.y + b.r > H){b.y = H - b.r; b.vy *= -1;}
+
+      const grad = ctx.createRadialGradient(
+        b.x - b.r*0.25, b.y - b.r*0.25, b.r*0.1,
+        b.x, b.y, b.r
+      );
+      grad.addColorStop(0, b.color+'0.55)');
+      grad.addColorStop(0.6, b.color+'0.30)');
+      grad.addColorStop(1, b.color+'0.05)');
+
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+      ctx.strokeStyle = b.color+'0.45)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // 内圈光晕
+      ctx.beginPath();
+      ctx.arc(b.x - b.r*0.2, b.y - b.r*0.2, b.r*0.25, 0, Math.PI*2);
+      ctx.fillStyle = b.color+'0.18)';
+      ctx.fill();
+
+      // 文字
+      ctx.fillStyle = 'rgba(20,30,60,0.85)';
+      ctx.font = `500 ${Math.max(10, b.r*0.22)}px system-ui,sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(b.label, b.x, b.y - 5);
+
+      ctx.fillStyle = 'rgba(20,30,60,0.5)';
+      ctx.font = `${Math.max(9, b.r*0.18)}px system-ui,sans-serif`;
+      ctx.fillText(b.pct+'%', b.x, b.y + b.r*0.25);
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+if(wrap.offsetWidth > 0){init();}
+else{setTimeout(init,100);}
+</script>

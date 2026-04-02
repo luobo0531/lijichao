@@ -1,0 +1,68 @@
+提示词：
+
+请帮我把 HTML 和 CSS 文件中所有引用 images/ 文件夹的图片路径，批量替换为 jsDelivr CDN 格式。
+
+替换规则：
+将 images/文件名 替换为 https://cdn.jsdelivr.net/gh/你的GitHub用户名/你的仓库名@main/images/文件名
+
+示例参考：
+
+CSS 背景：从 url('images/background.png') 变为 url('https://cdn.jsdelivr.net/gh/你的GitHub用户名/你的仓库名@main/images/background.png')
+
+HTML 标签：从 src="images/devise1.png" 变为 src="https://cdn.jsdelivr.net/gh/你的GitHub用户名/你的仓库名@main/images/devise1.png"
+
+请执行全量替换并保持其他属性不变。
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+你只需要把 HTML 代码里的图片路径按照下面这个逻辑替换：
+
+你的 GitHub 图片原始地址（假设）：
+https://github.com/LuoQingyu/my-site/blob/main/images/bg.jpg
+
+对应的 jsDelivr 加速地址：
+https://cdn.jsdelivr.net/gh/LuoQingyu/my-site@main/images/bg.jpg
+
+
+
+方案 1：jsDelivr CDN 加速（推荐作为首选）
+原理：
+想象 GitHub 是一个远在海外的仓库，每次别人看你网页，都要跑去海外仓库搬砖，所以慢。
+jsDelivr 是一个“快递中转站”，它在世界各地（包括中国周边）都有缓存节点。当第一个人访问你的图片后，它就会把图片存在离用户最近的节点上。下一个人访问时，直接从近处的“中转站”拿货，速度极快。
+
+具体操作：
+你不需要注册任何账号，只需要改一下图片链接的写法。
+
+假设你的 GitHub 用户名是 LuoQingyu，仓库名是 my-site，图片在 images/bg1.jpg。
+
+你在 HTML 里的原始写法可能是：
+src="images/bg1.jpg" 或者 src="https://raw.githubusercontent.com/..."
+
+改成 CDN 专用写法：
+https://cdn.jsdelivr.net/gh/你的用户名/仓库名@分支名/文件路径
+
+例子： https://cdn.jsdelivr.net/gh/LuoQingyu/my-site@main/images/bg1.jpg
+
+优点： 规范、自动化，你改了 GitHub 里的代码，它会自动同步。
+缺点： 偶尔在国内部分地区访问会抖动（虽然大部分时间很稳）。
+
+
+原理：
+不需要去任何其他网站上传图片。这正是 jsDelivr 备受开发者青睐的原因——它直接“镜像”了你的 GitHub 仓库。
+
+只要你的图片已经 git push 到了 GitHub 上，jsDelivr 就能通过一套固定的“公式”找到它们。
+
+1. 它是怎么做到的？（神奇的“公式”）
+jsDelivr 的服务器就像一个智能爬虫。当你把图片链接改写成它的格式时，发生的过程如下：
+
+用户访问： 有人打开你的网页，浏览器请求 cdn.jsdelivr.net/.../bg1.jpg。
+
+首次抓取： 如果是第一次有人访问，jsDelivr 的服务器会立刻顺着链接里的“用户名”和“仓库名”，飞速跑到 GitHub 对应的路径下把这张图抓取过去。
+
+全球缓存： 抓取成功后，它会把这张图存放在它遍布全球的几百台服务器（节点）上。
+
+就近分发： 以后再有人访问，jsDelivr 就不会再去麻烦 GitHub 了，而是直接从离那个用户最近的服务器把图发过去。

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地震模拟振动台 - 中国地震局工程力学研究所</title>
+    <meta name="description" content="中国地震局工程力学研究所地震模拟实验室装备有双台地震模拟振动台阵系统，包括大台、小台和新小台。">
+    <meta name="keywords" content="地震模拟振动台,双台阵,抗震试验,中国地震局工程力学研究所">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 地震模拟振动台专用样式 */
+        .shaking-table-section {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e9ecef 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shaking-table-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M0,100 Q50,80 100,100 T200,100" stroke="rgba(26, 115, 232, 0.05)" fill="none" stroke-width="2"/><path d="M0,50 Q50,30 100,50 T200,50" stroke="rgba(26, 115, 232, 0.05)" fill="none" stroke-width="2"/><path d="M0,150 Q50,130 100,150 T200,150" stroke="rgba(26, 115, 232, 0.05)" fill="none" stroke-width="2"/></svg>') repeat;
+            z-index: 0;
+        }
+        
+        .shaking-table-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .shaking-table-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1a4a7a;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .shaking-table-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #1a73e8, #34a853);
+            border-radius: 2px;
+        }
+        
+        .shaking-table-header p {
+            font-size: 1.1rem;
+            color: #5f6368;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .shaking-table-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .shaking-table-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid #e3f2fd;
+        }
+        
+        .shaking-table-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .shaking-table-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1a73e8, #34a853);
+        }
+        
+        .shaking-table-card-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shaking-table-card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(26, 115, 232, 0.1)"/><circle cx="25" cy="25" r="1" fill="rgba(26, 115, 232, 0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(26, 115, 232, 0.05)"/><circle cx="75" cy="25" r="1" fill="rgba(26, 115, 232, 0.05)"/><circle cx="25" cy="75" r="1" fill="rgba(26, 115, 232, 0.05)"/></svg>') repeat;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .shaking-table-card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a4a7a;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .shaking-table-card-header p {
+            font-size: 0.9rem;
+            color: #5f6368;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .shaking-table-card-body {
+            padding: 2rem;
+        }
+        
+        .shaking-table-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specs-table th {
+            text-align: left;
+            padding: 0.8rem;
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #e3f2fd;
+            font-weight: 600;
+            color: #1a4a7a;
+        }
+        
+        .specs-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #e3f2fd;
+            color: #5f6368;
+        }
+        
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .shaking-table-features {
+            margin-top: 1.5rem;
+        }
+        
+        .shaking-table-features h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a4a7a;
+            margin-bottom: 1rem;
+        }
+        
+        .shaking-table-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .shaking-table-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            color: #5f6368;
+        }
+        
+        .shaking-table-features li::before {
+            content: '⚙';
+            position: absolute;
+            left: 0;
+            color: #1a73e8;
+            font-size: 1rem;
+        }
+        
+        .shaking-table-overview {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e3f2fd;
+        }
+        
+        .shaking-table-overview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1a73e8, #fbbc05, #34a853);
+        }
+        
+        .shaking-table-overview h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a4a7a;
+            margin-bottom: 1.5rem;
+        }
+        
+        .shaking-table-overview p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #5f6368;
+            margin-bottom: 1.5rem;
+        }
+        
+        .shaking-table-overview ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .shaking-table-overview li {
+            padding: 0.8rem 0;
+            position: relative;
+            padding-left: 2rem;
+            color: #5f6368;
+        }
+        
+        .shaking-table-overview li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #34a853;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: #e3f2fd;
+            color: #1a73e8;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #bbdefb;
+        }
+        
+        .tech-badge.cma {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-color: #c8e6c9;
+        }
+        
+        .tech-badge.cnas {
+            background: #f3e5f5;
+            color: #7b1fa2;
+            border-color: #e1bee7;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .shaking-table-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .shaking-table-overview {
+                padding: 2rem;
+            }
+            
+            .shaking-table-header h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>李吉超 <span></span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html#academic">科研Newmark</a></li>
+                        <li><a href="index.html#engineering">工程Newmark</a></li>
+                        <li><a href="index.html#software">软件Newmark</a></li>
+                        <li><a href="index.html#toys">萝卜Claw专区</a></li>
+                        <li><a href="index.html#misc">神神叨叨的大裁缝</a></li>
+                        <li class="language-switch">
+                            <button id="lang-zh" class="active">中</button>
+                            <button id="lang-en">En</button>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 地震模拟振动台板块 -->
+    <section class="shaking-table-section">
+        <div class="container">
+            <div class="shaking-table-header">
+                <h2>地震模拟振动台</h2>
+                <p>中国地震局工程力学研究所地震模拟实验室装备有先进的双台地震模拟振动台阵系统，为各类结构与设备的抗震性能试验提供专业支持</p>
+            </div>
+
+            <!-- 振动台概览 -->
+            <div class="shaking-table-overview">
+                <h3>实验室概览</h3>
+                <p>中国地震局工程力学研究所地震模拟实验室装备有双台地震模拟振动台阵系统。其中大台台面尺寸5mx5m，承载能力达30吨，最大行程±0.5m，最大速度1.5m/s，最大加速度达2g，可用于具有速度大脉冲强破坏型地震的模拟，也可用于高层建筑非结构构件的抗震鉴定。</p>
+                <p>小台台面尺寸为3.5mx3.5m，承载能力为6吨，最大行程±0.25m，最大速度2.4m/s，最大加速度4g，空载可达7g，主要用于各类设备特别是核级设备的抗震试验。</p>
+                <p>新小台台面尺寸为3.5mx3.5m，承载能力为20吨，最大行程±0.25m（竖向±200mm），最大速度1m/s（竖向0.9m/s），满载最大加速度1.5g。</p>
+                <p>投入使用以来，已经完成了多个试验，包括新型核工程、大型电气和电力设施和古代建筑的抗震试验。</p>
+                <div class="tech-badges">
+                    <span class="tech-badge cma">CMA认证</span>
+                    <span class="tech-badge cnas">CNAS认证</span>
+                    <span class="tech-badge">专业抗震试验</span>
+                    <span class="tech-badge">核级设备测试</span>
+                    <span class="tech-badge">古代建筑保护</span>
+                </div>
+            </div>
+
+            <!-- 振动台网格 -->
+            <div class="shaking-table-grid">
+                <!-- 大台 -->
+                <div class="shaking-table-card">
+                    <div class="shaking-table-card-header">
+                        <h3>大台（固定）</h3>
+                        <p>5m × 5m | 承载能力30吨</p>
+                    </div>
+                    <div class="shaking-table-card-body">
+                        <img src="images/shaking table.png" alt="地震模拟振动台" class="shaking-table-image">
+                        <table class="specs-table">
+                            <tr>
+                                <th>项目</th>
+                                <th>参数</th>
+                            </tr>
+                            <tr>
+                                <td>尺寸</td>
+                                <td>5m × 5m</td>
+                            </tr>
+                            <tr>
+                                <td>承载能力</td>
+                                <td>30吨</td>
+                            </tr>
+                            <tr>
+                                <td>最大倾覆力矩</td>
+                                <td>80 t·m</td>
+                            </tr>
+                            <tr>
+                                <td>频率范围</td>
+                                <td>0.1~100 Hz</td>
+                            </tr>
+                            <tr>
+                                <td>波形</td>
+                                <td>正弦、随机、地震动</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大加速度</td>
+                                <td>2g</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大加速度</td>
+                                <td>1.5g</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大速度</td>
+                                <td>1.5 m/s</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大速度</td>
+                                <td>1.2 m/s</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大位移</td>
+                                <td>500 mm</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大位移</td>
+                                <td>200 mm</td>
+                            </tr>
+                        </table>
+                        <div class="shaking-table-features">
+                            <h4>主要用途</h4>
+                            <ul>
+                                <li>具有速度大脉冲强破坏型地震的模拟</li>
+                                <li>高层建筑非结构构件的抗震鉴定</li>
+                                <li>大型结构模型的抗震性能测试</li>
+                                <li>复杂结构的动力响应分析</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 小台 -->
+                <div class="shaking-table-card">
+                    <div class="shaking-table-card-header">
+                        <h3>小台（移动）</h3>
+                        <p>3.5m × 3.5m | 承载能力6吨</p>
+                    </div>
+                    <div class="shaking-table-card-body">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=seismic%20shaking%20table%20laboratory%20equipment%2C%20small%20scale%2C%20technical%20setting%2C%20blue%20lighting%2C%20high%20quality&image_size=landscape_16_9" alt="小型地震模拟振动台" class="shaking-table-image">
+                        <table class="specs-table">
+                            <tr>
+                                <th>项目</th>
+                                <th>参数</th>
+                            </tr>
+                            <tr>
+                                <td>尺寸</td>
+                                <td>3.5m × 3.5m</td>
+                            </tr>
+                            <tr>
+                                <td>承载能力</td>
+                                <td>6吨</td>
+                            </tr>
+                            <tr>
+                                <td>最大倾覆力矩</td>
+                                <td>40 t·m</td>
+                            </tr>
+                            <tr>
+                                <td>频率范围</td>
+                                <td>0.1~100 Hz</td>
+                            </tr>
+                            <tr>
+                                <td>波形</td>
+                                <td>正弦、随机、地震动</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大加速度</td>
+                                <td>4g（空载可达7g）</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大加速度</td>
+                                <td>3g</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大速度</td>
+                                <td>2.4 m/s</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大速度</td>
+                                <td>1.8 m/s</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大位移</td>
+                                <td>250 mm</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大位移</td>
+                                <td>300 mm</td>
+                            </tr>
+                        </table>
+                        <div class="shaking-table-features">
+                            <h4>主要用途</h4>
+                            <ul>
+                                <li>各类设备特别是核级设备的抗震试验</li>
+                                <li>小型结构模型的动力性能测试</li>
+                                <li>精密仪器设备的抗震性能评估</li>
+                                <li>高频振动响应测试</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 新小台 -->
+                <div class="shaking-table-card">
+                    <div class="shaking-table-card-header">
+                        <h3>新小台（移动）</h3>
+                        <p>3.5m × 3.5m | 承载能力20吨</p>
+                    </div>
+                    <div class="shaking-table-card-body">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20seismic%20shaking%20table%20equipment%2C%20new%20technology%2C%20high%20tech%20laboratory%2C%20blue%20and%20white%20design%2C%20professional%20setting&image_size=landscape_16_9" alt="新型地震模拟振动台" class="shaking-table-image">
+                        <table class="specs-table">
+                            <tr>
+                                <th>项目</th>
+                                <th>参数</th>
+                            </tr>
+                            <tr>
+                                <td>尺寸</td>
+                                <td>3.5m × 3.5m</td>
+                            </tr>
+                            <tr>
+                                <td>承载能力</td>
+                                <td>20吨</td>
+                            </tr>
+                            <tr>
+                                <td>最大倾覆力矩</td>
+                                <td>40 t·m</td>
+                            </tr>
+                            <tr>
+                                <td>频率范围</td>
+                                <td>0.1~50 Hz</td>
+                            </tr>
+                            <tr>
+                                <td>波形</td>
+                                <td>正弦、随机、地震动</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大加速度</td>
+                                <td>1.5g</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大加速度</td>
+                                <td>1.5g</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大速度</td>
+                                <td>1.0 m/s</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大速度</td>
+                                <td>0.9 m/s</td>
+                            </tr>
+                            <tr>
+                                <td>水平向最大位移</td>
+                                <td>250 mm</td>
+                            </tr>
+                            <tr>
+                                <td>竖向最大位移</td>
+                                <td>200 mm</td>
+                            </tr>
+                        </table>
+                        <div class="shaking-table-features">
+                            <h4>主要用途</h4>
+                            <ul>
+                                <li>中等重量设备的抗震性能测试</li>
+                                <li>复杂结构模型的动力响应分析</li>
+                                <li>多自由度振动测试</li>
+                                <li>大型电气设备的抗震鉴定</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>李吉超 副研究员</h3>
+                    <p>中国地震局工程力学研究所</p>
+                    <p>专注于工程系统抗震韧性分析、智能振动控制、重大工程地震灾害风险监测与评估研究</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="index.html#academic">科研Newmark</a></li>
+                        <li><a href="index.html#engineering">工程Newmark</a></li>
+                        <li><a href="index.html#software">软件Newmark</a></li>
+                        <li><a href="index.html#toys">萝卜Claw专区</a></li>
+                        <li><a href="index.html#misc">神神叨叨的大裁缝</a></li>
+                        <li><a href="shaking_table.html">地震模拟振动台</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 李吉超. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        function toggleMobileMenu() {
+            const navUl = document.querySelector('nav ul');
+            navUl.classList.toggle('mobile-menu');
+        }
+
+        // 回到顶部按钮
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.className = 'back-to-top';
+        backToTopBtn.textContent = '↑';
+        document.body.appendChild(backToTopBtn);
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 语言切换
+        document.getElementById('lang-zh').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('lang-en').classList.remove('active');
+            // 这里可以添加语言切换逻辑
+        });
+
+        document.getElementById('lang-en').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('lang-zh').classList.remove('active');
+            // 这里可以添加语言切换逻辑
+        });
+    </script>
+</body>
+</html>

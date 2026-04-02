@@ -1,0 +1,199 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);}
+
+.trigger-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:20px;
+  background:var(--color-background-primary);
+  border:1.5px solid var(--color-border-secondary);
+  font-size:13px;font-weight:500;color:var(--color-text-primary);
+  cursor:pointer;user-select:none;
+  transition:border-color .15s,box-shadow .15s;
+  position:relative;
+}
+.trigger-btn:hover{border-color:#378ADD;box-shadow:0 0 0 3px rgba(55,138,221,0.12);}
+.trigger-btn .dot{width:7px;height:7px;border-radius:50%;background:#378ADD;flex-shrink:0;}
+.trigger-btn .chevron{font-size:10px;color:var(--color-text-secondary);}
+
+.popup-wrap{position:relative;display:inline-block;}
+
+.popup{
+  display:none;
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  z-index:999;
+  width:680px;
+  background:var(--color-background-primary);
+  border:0.5px solid var(--color-border-secondary);
+  border-radius:16px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.10);
+  overflow:hidden;
+}
+.popup-wrap:hover .popup{display:block;}
+
+.popup-inner{padding:24px 24px 20px;}
+
+/* ——— 个人授权区 ——— */
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.section-icon{width:28px;height:28px;border-radius:8px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;}
+.section-icon svg{width:15px;height:15px;}
+.section-label{font-size:18px;font-weight:500;color:var(--color-text-primary);}
+.section-sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:14px;line-height:1.6;}
+
+/* 两列并排 */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.col-block{}
+.col-title{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;letter-spacing:0.04em;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{text-align:left;font-weight:500;font-size:11px;color:var(--color-text-secondary);padding:5px 8px;border-bottom:0.5px solid var(--color-border-tertiary);}
+th:last-child,td:last-child{text-align:right;}
+td{padding:7px 8px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);}
+tr:last-child td{border-bottom:none;}
+.hl{background:var(--color-background-secondary);}
+.badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;margin-left:5px;background:#E6F1FB;color:#185FA5;font-weight:500;}
+.badge-g{background:#EAF3DE;color:#3B6D11;}
+
+/* 永久授权 */
+.lifetime{background:linear-gradient(135deg,#f0f6ff 0%,#e8f4ff 100%);border:1px solid #B5D4F4;border-radius:10px;padding:14px 16px;margin-bottom:14px;position:relative;}
+.lifetime-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
+.lifetime-badge{font-size:10px;font-weight:500;padding:3px 9px;border-radius:20px;background:#378ADD;color:#fff;}
+.lifetime-price{font-size:24px;font-weight:500;color:#0C447C;}
+.lifetime-price span{font-size:13px;font-weight:400;color:#185FA5;margin-left:2px;}
+.lifetime-sub{font-size:11px;color:#185FA5;margin-bottom:10px;}
+.lifetime-features{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.lf-item{font-size:11px;color:#185FA5;display:flex;gap:5px;align-items:flex-start;line-height:1.5;}
+.lf-item::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#378ADD;flex-shrink:0;margin-top:4px;}
+
+/* 分割线 */
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:14px 0 12px;}
+
+/* 企业区 */
+.ent-header{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.ent-icon{width:28px;height:28px;border-radius:8px;background:#EAF3DE;display:flex;align-items:center;justify-content:center;}
+.ent-icon svg{width:15px;height:15px;}
+
+.ent-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
+.ent-card{border:0.5px solid var(--color-border-tertiary);border-radius:10px;padding:12px;background:var(--color-background-primary);}
+.ent-card.custom{border:1px dashed #B5D4F4;background:#f7fbff;}
+.ent-card-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px;}
+.ent-card-price{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px;}
+.ent-card-price .unit{font-size:12px;font-weight:400;color:var(--color-text-secondary);}
+.ent-card-desc{font-size:11px;color:var(--color-text-secondary);line-height:1.5;}
+.ent-card.custom .ent-card-price{font-size:15px;color:#185FA5;}
+.ent-card.custom .ent-card-desc{color:#378ADD;}
+
+.popup-footer{padding:10px 24px 12px;border-top:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);display:flex;align-items:center;justify-content:space-between;}
+.footer-tip{font-size:11px;color:var(--color-text-secondary);}
+.footer-link{font-size:11px;color:#378ADD;cursor:pointer;font-weight:500;}
+</style>
+
+<div style="padding:2rem;display:flex;align-items:flex-start;justify-content:flex-start;">
+<div class="popup-wrap">
+  <button class="trigger-btn">
+    <span class="dot"></span>
+    软件授权定价
+    <span class="chevron">▾</span>
+  </button>
+
+  <div class="popup">
+    <div class="popup-inner">
+
+      <!-- 个人授权标题 -->
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="4.5" r="2.5" fill="#378ADD"/>
+            <path d="M2 12.5c0-2.485 2.462-4.5 5.5-4.5s5.5 2.015 5.5 4.5" stroke="#378ADD" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="section-label">个人授权</span>
+      </div>
+      <p class="section-sub">适合独立工程师或偶发使用场景，可根据使用频率灵活选择按次或按时间计费。</p>
+
+      <!-- 两列表格 -->
+      <div class="two-col">
+        <div class="col-block">
+          <p class="col-title">按次购买（永久有效）</p>
+          <table>
+            <thead><tr><th>套餐</th><th>总价</th><th>单次均价</th></tr></thead>
+            <tbody>
+              <tr><td>10 次</td><td>¥299</td><td style="color:var(--color-text-secondary)">¥249</td></tr>
+              <tr class="hl"><td>20 次 <span class="badge">推荐</span></td><td>¥699</td><td style="color:var(--color-text-secondary)">¥233</td></tr>
+              <tr><td>30 次</td><td>¥1,599</td><td style="color:var(--color-text-secondary)">¥160</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-block">
+          <p class="col-title">按时间订阅（不限次数）</p>
+          <table>
+            <thead><tr><th>套餐</th><th>总价</th><th>月均费用</th></tr></thead>
+            <tbody>
+              <tr><td>7 天</td><td>¥599</td><td style="color:var(--color-text-secondary)">¥249</td></tr>
+              <tr><td>1 个月</td><td>¥599</td><td style="color:var(--color-text-secondary)">¥599</td></tr>
+              <tr><td>3 个月</td><td>¥1,299</td><td style="color:var(--color-text-secondary)">¥433</td></tr>
+              <tr class="hl"><td>1 年 <span class="badge-g badge">最划算</span></td><td>¥3,599</td><td style="color:var(--color-text-secondary)">¥300</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 永久授权 -->
+      <div class="lifetime">
+        <div class="lifetime-top">
+          <div>
+            <div class="lifetime-price">¥9,999 <span>一次付清</span></div>
+            <div class="lifetime-sub">永久有效 · 不限次数</div>
+          </div>
+          <span class="lifetime-badge">永久授权</span>
+        </div>
+        <div class="lifetime-features">
+          <div class="lf-item">3 年内所有版本免费升级，无需额外付费</div>
+          <div class="lf-item">无任何使用次数限制，随用随开</div>
+          <div class="lf-item">授权永不过期，一次投入长期使用</div>
+          <div class="lf-item">适合长期深度使用，综合成本最低</div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- 企业区 -->
+      <div class="ent-header">
+        <div class="ent-icon">
+          <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1.5" y="5.5" width="12" height="8" rx="1.5" stroke="#3B6D11" stroke-width="1.2"/>
+            <path d="M5 5.5V4a2.5 2.5 0 0 1 5 0v1.5" stroke="#3B6D11" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <span class="section-label">企业 / 批量采购</span>
+      </div>
+      <p class="section-sub">含技术支持、上门培训及正规开票服务，可签订采购合同。</p>
+
+      <div class="ent-grid">
+        <div class="ent-card">
+          <div class="ent-card-label">多席位授权</div>
+          <div class="ent-card-price">¥9,999 <span class="unit">/ 年</span></div>
+          <div class="ent-card-desc">3 席位 · 含基础技术支持 · 支持开票</div>
+        </div>
+        <div class="ent-card">
+          <div class="ent-card-label">网络 IP 授权</div>
+          <div class="ent-card-price">¥14,999 <span class="unit">/ 年</span></div>
+          <div class="ent-card-desc">局域网内不限人数 · 适合大型设计院</div>
+        </div>
+        <div class="ent-card custom">
+          <div class="ent-card-label">定制开发</div>
+          <div class="ent-card-price">价格面议</div>
+          <div class="ent-card-desc">可按需开发新功能模块，欢迎联系洽谈需求</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="popup-footer">
+      <span class="footer-tip">所有价格含税 · 支持对公转账</span>
+      <span class="footer-link">联系我们获取报价 →</span>
+    </div>
+  </div>
+</div>
+</div>
